@@ -7,10 +7,10 @@ description: Iniciar e evoluir aplicações SaaS completas a partir do software-
 
 ## Primeiros passos
 1. Identificar objetivo do produto, tipo de usuário, principal jornada e necessidade de dados sensíveis.
-2. Se projeto novo, usar o gerador do repositório: `python3 scripts/new_saas.py --name "Meu SaaS" --output ./meu-saas --non-interactive`.
+2. Se projeto novo, escolher o backend com o usuário e usar `python3 scripts/new_saas.py --name "Meu SaaS" --database supabase|postgres --output ./meu-saas --non-interactive`. Supabase e PostgreSQL independente são opções válidas em qualquer nível de experiência.
 3. Ler `docs/quickstart.md`, `docs/saas-roadmap.md` e `docs/frontend-playbook.md` conforme a tarefa.
-4. Separar o que já funciona daquilo que depende de configuração (Supabase, e-mail, domínio, faturamento).
-5. Criar a menor jornada operacional completa possível; preservar isolamento de tenant e dados por RLS.
+4. Separar o que já funciona daquilo que depende de configuração (Supabase ou PostgreSQL, autenticação, e-mail, domínio, faturamento).
+5. Criar a menor jornada operacional completa possível; no perfil Supabase exigir RLS, no perfil PostgreSQL independente verificar ownership em **todas** as consultas/mutações do backend. Não confiar em filtro de frontend.
 6. Instalar a skill oficial de performance React da Vercel, após revisar sua origem e versão, em projetos React/Next.js. Não copiar nem congelar regras upstream sem revisão de licença.
 7. Executar testes, build, checks de UI mobile e critérios de aceite. Não afirmar sucesso sem evidência.
 

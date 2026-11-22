@@ -37,7 +37,7 @@ python3 scripts/new_saas.py --name "Minha Agenda" --database postgres --output .
 2. `cp .env.example .env.local`
 3. Para PostgreSQL local, instale Docker e use `docker compose up -d db`; em VPS/banco gerenciado, informe o URI em `DATABASE_URL`.
 4. Gere um segredo seguro (`openssl rand -base64 32`) e preencha `BETTER_AUTH_SECRET` e `BETTER_AUTH_URL`.
-5. Execute `npx auth@latest migrate` para criar as tabelas de autenticação, depois `npm run db:migrate` para criar workspaces e tarefas.
+5. Execute `npm run db:setup`: o script carrega o `.env.local`, instala a migração do Better Auth e cria as tabelas de workspaces e tarefas.
 6. Rode `npm run dev`, entre em `/login`, crie conta e acesse o painel.
 
 Leia o README do projeto gerado, especialmente os requisitos de segurança para produção. O Postgres próprio **não usa nenhuma chave/API do Supabase**.

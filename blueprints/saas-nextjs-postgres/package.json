@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "next typegen && tsc --noEmit",
-    "db:migrate": "node --env-file=.env.local scripts/migrate-db.mjs"
+    "db:migrate": "node --env-file=.env.local scripts/migrate-db.mjs",
+    "auth:migrate": "node --env-file=.env.local scripts/auth-migrate.mjs",
+    "db:setup": "npm run auth:migrate && npm run db:migrate"
   },
   "dependencies": {
     "better-auth": "^1.7.27",

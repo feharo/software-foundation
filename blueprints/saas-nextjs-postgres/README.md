@@ -1,5 +1,7 @@
 # __APP_NAME__ — PostgreSQL independente
 
+> No repositório Software Foundation, este diretório é **um overlay**, não uma aplicação isolada: use `scripts/new_saas.py --database postgres` para gerar o projeto completo. No projeto gerado, este README descreve a aplicação final.
+
 Este template usa **Next.js + PostgreSQL + Better Auth**. Você pode usar Postgres em Docker, DigitalOcean, VPS ou serviço gerenciado. **Não depende do Supabase.** A landing funciona antes de conectar o banco.
 
 ## Início rápido (local)
@@ -21,8 +23,7 @@ openssl rand -base64 32
 Mantenha `DATABASE_URL` para o Postgres local ou substitua pela string de conexão do seu banco.
 
 ```sh
-npx auth@latest migrate
-npm run db:migrate
+npm run db:setup
 npm run dev
 ```
 
@@ -50,7 +51,7 @@ Better Auth gerencia sessões, registro e entrada com e-mail/senha. O servidor d
 npm run dev
 npm run typecheck
 npm run build
-npm run db:migrate
+npm run db:setup
 python3 scripts/doctor.py
 ```
 
