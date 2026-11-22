@@ -38,7 +38,7 @@ npm run dev
 
 Também é possível escolher PostgreSQL independente: `--database postgres` (Docker, VPS ou serviço gerenciado). O modo interativo pergunta qual opção usar. A landing abre em http://localhost:3000 mesmo sem configurar o banco. No perfil Supabase, magic link e dashboard ficam funcionais após configurar o Supabase. No perfil PostgreSQL, login por senha e dashboard são servidos pelo próprio Next.js com Better Auth e backend PostgreSQL, após migração e configuração. **Cobrança, convites e controles avançados ainda não estão implementados**.
 
-Leia [passo a passo para iniciantes](docs/quickstart.md), [guia de frontend](docs/frontend-playbook.md) e [roadmap do SaaS](docs/saas-roadmap.md).
+Leia [passo a passo para iniciantes, incluindo Windows PowerShell](docs/quickstart.md), [guia de frontend](docs/frontend-playbook.md) e [roadmap do SaaS](docs/saas-roadmap.md).
 
 ## A fundação
 

@@ -121,6 +121,12 @@ def create(name, output, slug=None, color="#2558cf", database="supabase"):
     return destination
 
 
+def setup_copy_command(platform_name=None):
+    """Show commands a new user can actually run on the current OS."""
+    os_name = platform_name if platform_name is not None else sys.platform
+    return "Copy-Item .env.example .env.local" if os_name == "win32" else "cp .env.example .env.local"
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Inicie um SaaS com Supabase ou PostgreSQL independente.")
     parser.add_argument("--name", help="Nome exibido no produto")
@@ -157,7 +163,7 @@ def main(argv=None):
         print("\nPróximos passos:")
         print(f"  cd {dest}")
         print("  npm install")
-        print("  cp .env.example .env.local")
+        print("  " + setup_copy_command())
         print("  npm run dev")
         print("\nA landing funcionará imediatamente. Para login e banco, leia o README.md gerado.")
         return 0

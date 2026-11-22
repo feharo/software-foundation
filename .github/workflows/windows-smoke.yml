@@ -1,0 +1,75 @@
+name: Windows - First Run
+on:
+  push:
+    branches: [main]
+    paths: ['foundation.py', 'scripts/**', 'blueprints/**', 'profiles/**', 'templates/**', 'standards/**', '.github/workflows/windows-smoke.yml']
+  pull_request:
+    paths: ['foundation.py', 'scripts/**', 'blueprints/**', 'profiles/**', 'templates/**', 'standards/**', '.github/workflows/windows-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [supabase, postgres]
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+      DATABASE_URL: 'postgresql://foundation:ci-only@127.0.0.1:5432/foundation'
+      BETTER_AUTH_SECRET: 'ci-only-do-not-use-this-as-a-real-secret-123456789'
+      BETTER_AUTH_URL: 'http://localhost:3000'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Run Python tests on Windows
+        shell: pwsh
+        run: |
+          python --version
+          node --version
+          python scripts/validate_foundation.py
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python -m unittest discover -s tests -v
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+      - name: Initialize and adopt a project through one CLI
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $target = Join-Path $env:RUNNER_TEMP ('foundation-starter-' + '${{ matrix.database }}')
+          python foundation.py init --name 'Windows SaaS' --database '${{ matrix.database }}' --output "$target" --non-interactive
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python foundation.py doctor "$target"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python foundation.py adopt "$target"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python foundation.py adopt "$target" --apply
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python foundation.py upgrade "$target"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $audit = Join-Path $env:RUNNER_TEMP ('foundation-audit-' + '${{ matrix.database }}' + '.json')
+          python foundation.py audit "$target" --format json --output "$audit"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $json = Get-Content "$audit" -Raw | ConvertFrom-Json
+          if ($json.inspection -ne 'static_only' -or $json.results.Count -ne 31) { throw 'Invalid audit output' }
+      - name: Generate and compile on Windows
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $target = Join-Path $env:RUNNER_TEMP ('foundation-starter-' + '${{ matrix.database }}')
+          Set-Location $target
+          Copy-Item .env.example .env.local
+          npm install --no-audit --no-fund
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          npm run typecheck
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          npm run build
+          if ($LASTEXITCODE -ne 0) { exit 1 }

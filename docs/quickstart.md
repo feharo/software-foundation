@@ -49,3 +49,33 @@ Use `py scripts/new_saas.py ...` e `Copy-Item .env.example .env.local`.
 ## Observação de produção
 
 O starter PostgreSQL inclui autenticação por e-mail/senha para uso inicial, mas **verificação de e-mail, recuperação de senha com provedor de e-mail, backups, observabilidade, testes multiusuário e LGPD devem ser configurados antes de lançar**. Nunca publique o serviço de banco de exemplo na Internet. Ambos os perfis precisam de testes de autorização reais.
+
+
+## Guia completo — Windows PowerShell
+
+Instale **Python 3.12+**, **Node.js 22+** e Git for Windows. Abra o PowerShell na pasta onde deseja trabalhar. Docker só é necessário para iniciar um PostgreSQL local; você pode escolher um banco remoto gerenciado.
+
+```powershell
+git clone https://github.com/feharo/software-foundation.git
+Set-Location software-foundation
+py -3.12 foundation.py init --name "Minha Agenda" --database postgres --output ..\minha-agenda --non-interactive
+Set-Location ..\minha-agenda
+npm install
+Copy-Item .env.example .env.local
+npm run dev
+```
+
+Com PostgreSQL independente, configure as variáveis `DATABASE_URL`, `BETTER_AUTH_SECRET` e `BETTER_AUTH_URL` e rode `npm run db:setup`. Para um teste local, inicie o banco com `docker compose up -d db` antes das migrações. Sem banco, a landing pública abre, mas login e dados não funcionam.
+
+**Adotar padrões em um projeto existente:**
+
+```powershell
+Set-Location software-foundation
+py -3.12 foundation.py adopt ..\meu-projeto
+py -3.12 foundation.py adopt ..\meu-projeto --apply
+py -3.12 foundation.py audit ..\meu-projeto --format markdown --output ..\auditoria.md
+```
+
+Se o Windows disser que Python não está instalado, confirme `py -0p` (Python Launcher) ou use `python foundation.py ...` após instalação. No Git Bash/Linux, use `python3`. No PowerShell, variáveis de ambiente são definidas por `$env:KEY = '...'`, não pelo comando Unix `export`.
+
+O workflow `.github/workflows/windows-smoke.yml` executa criação, adoção, diagnóstico, auditoria e compilação dos dois perfis em um runner Windows limpo, sem conexão de produção. Isso não substitui um teste manual no computador de cada usuário.

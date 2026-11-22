@@ -13,7 +13,7 @@ Obrigado por contribuir! O projeto está em estágio pré-release e busca facili
 
 ## Rodar as verificações
 
-Requisitos: Python 3.12 e Node.js 22+; Docker para testes de integração de banco.
+Requisitos: Python 3.12 e Node.js 22+; Docker para testes de integração de banco. Uma matriz de Windows roda em `.github/workflows/windows-smoke.yml`, e a varredura do histórico completo usa `.github/workflows/history-secrets.yml`.
 
 ```sh
 python3 scripts/validate_foundation.py
