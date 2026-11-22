@@ -66,7 +66,7 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIn("better-auth", pkg["dependencies"])
             self.assertNotIn("@supabase/supabase-js", pkg["dependencies"])
             self.assertFalse((dest / "lib" / "supabase.ts").exists())
-            self.assertFalse((dest / "supabase" / "schema.sql").exists())
+            self.assertFalse((dest / "supabase").exists())
             self.assertTrue((dest / "app" / "api" / "tasks" / "route.ts").exists())
             self.assertTrue((dest / "db" / "schema.sql").exists())
             self.assertTrue((dest / "docker-compose.yml").exists())

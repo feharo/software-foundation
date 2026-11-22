@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BLUEPRINT = ROOT / "blueprints" / "saas-nextjs-supabase"
 POSTGRES_OVERLAY = ROOT / "blueprints" / "saas-nextjs-postgres"
 DATABASES = {"supabase", "postgres"}
-POSTGRES_EXCLUDE = {"lib/supabase.ts", "supabase/schema.sql"}
+POSTGRES_EXCLUDE = {"lib/supabase.ts"}
 NAME_LIMIT = 70
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
@@ -75,8 +75,10 @@ def create(name, output, slug=None, color="#2558cf", database="supabase"):
     if database == "postgres":
         if not POSTGRES_OVERLAY.is_dir():
             raise FileNotFoundError("Overlay PostgreSQL não encontrado.")
-        for excluded in POSTGRES_EXCLUDE:
-            paths.pop(Path(excluded), None)
+        # Exclude all Supabase-only files, including local CLI config and migrations.
+        for relative in list(paths):
+            if relative.parts[0] == "supabase" or relative.as_posix() in POSTGRES_EXCLUDE:
+                paths.pop(relative, None)
         paths.update({p.relative_to(POSTGRES_OVERLAY): p for p in POSTGRES_OVERLAY.rglob("*") if p.is_file()})
     destination.mkdir(parents=True)
     try:

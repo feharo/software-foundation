@@ -16,6 +16,8 @@ python3 foundation.py init --name "Meu SaaS" --database postgres --output ../meu
 python3 foundation.py adopt ../meu-projeto
 python3 foundation.py adopt ../meu-projeto --apply
 python3 foundation.py audit ../meu-projeto --format markdown --output ../auditoria-projeto.md
+python3 foundation.py upgrade ../meu-projeto        # verifica novas regras
+python3 foundation.py upgrade ../meu-projeto --apply
 ```
 
 A instalação das regras exige `--apply`. A auditoria é somente leitura, exceto quando você escolhe salvar o relatório. `adopt` não altera arquivos já existentes: preserva instruções personalizadas dos agentes e bloqueia conflitos na pasta gerenciada.
@@ -56,7 +58,7 @@ python3 scripts/validate_foundation.py
 python3 -m unittest discover -s tests -v
 ```
 
-Esses testes validam o catálogo e o gerador. Não comprovam performance real, segurança ou todas as integrações de um SaaS. O build de ambos os perfis de aplicação gerada é executado no GitHub Actions; testes reais entre tenants requerem instância Supabase configurada.
+Esses testes validam o catálogo e o gerador. Não comprovam performance real, segurança ou todas as integrações de um SaaS. O build de ambos os perfis de aplicação gerada é executado no GitHub Actions; o teste de Auth/RLS da variante Supabase usa containers locais; o comportamento de um projeto hospedado ainda exige homologação própria.
 
 ## Vercel React Best Practices
 
@@ -65,6 +67,17 @@ Integramos o **método de priorização** e uma referência à skill oficial de 
 ## Política de segurança
 
 Não salvar credenciais nem `service_role` em `NEXT_PUBLIC_*`. Garantir RLS, autorização no banco/API, backups, tratamento LGPD e observabilidade antes de atender clientes reais.
+
+## Prévia pública e contribuição
+
+O repositório **ainda está privado e sem licença de reutilização**, portanto não foi publicado como open source. Antes de abrir, siga o [checklist de pré-publicação](docs/public-preview-checklist.md), leia a [política de segurança](SECURITY.md) e o [guia de contribuição](CONTRIBUTING.md).
+
+```sh
+python3 scripts/check_publication.py
+python3 scripts/check_publication.py --strict  # exige LICENSE
+```
+
+O modo padrão verifica conteúdo rastreado, mas não histórico Git. O CI agora também executa teste de Auth/RLS no Supabase **local**, com duas contas, sem precisar de projeto hospedado. Veja [como testar Supabase](docs/supabase-testing.md).
 
 ## Licença
 
