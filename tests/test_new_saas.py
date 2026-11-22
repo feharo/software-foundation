@@ -43,7 +43,12 @@ class ScaffoldTests(unittest.TestCase):
             for entity in ("workspaces", "workspace_memberships", "tasks"):
                 self.assertIn(f"alter table public.{entity} enable row level security", schema)
             self.assertIn("is_workspace_member", schema)
-            self.assertNotIn("service_role", (destination / ".env.example").read_text().split("=", 1)[-1])
+            env_lines = (destination / ".env.example").read_text().splitlines()
+            public_values = [line.split("=", 1)[1].strip() for line in env_lines
+                             if line.startswith("NEXT_PUBLIC_") and "=" in line]
+            self.assertTrue(public_values)
+            self.assertTrue(all(not value for value in public_values),
+                            "Template must not contain actual credential values")
             with self.assertRaises(FileExistsError):
                 module.create("Outro Produto", destination)
 
