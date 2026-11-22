@@ -1,6 +1,6 @@
 :root {
   --accent: __PRIMARY_COLOR__;
-  --accent-hover: #1946a5;
+  --accent-hover: color-mix(in srgb, var(--accent) 84%, black);
   --ink: #172337;
   --muted: #607084;
   --surface: #fff;
@@ -179,3 +179,5 @@ p { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; }
 }
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }

@@ -23,12 +23,12 @@ class ScaffoldTests(unittest.TestCase):
     def test_create_project_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as directory:
             destination = Path(directory) / "novo-saas"
-            module.create("Minha Agenda", destination, slug="minha-agenda", color="#ff5533")
+            module.create("Minha Agenda", destination, slug="minha-agenda", color="#1b4bb1")
             package = json.loads((destination / "package.json").read_text())
             self.assertEqual(package["name"], "minha-agenda")
             self.assertIn("next", package["dependencies"])
             self.assertIn("Minha Agenda", (destination / "app" / "page.tsx").read_text())
-            self.assertIn("#ff5533", (destination / "app" / "globals.css").read_text())
+            self.assertIn("#1b4bb1", (destination / "app" / "globals.css").read_text())
             self.assertTrue((destination / "supabase" / "schema.sql").is_file())
             self.assertTrue((destination / ".env.example").is_file())
             with self.assertRaises(FileExistsError):
