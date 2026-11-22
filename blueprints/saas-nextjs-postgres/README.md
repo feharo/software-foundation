@@ -56,3 +56,7 @@ python3 scripts/doctor.py
 ```
 
 Consulte `SECURITY.md`, `PRODUCT_BRIEF.md` e `AGENTS.md` para continuar o desenvolvimento assistido por IA.
+
+## Testar interface mobile e desktop
+
+Depois de `npm install` e `npm run build`, instale o Chromium com `npx playwright install chromium` e execute `npm run test:e2e`. Os testes cobrem landing, login e overflow horizontal em mobile e desktop, sem acessar banco de produção.

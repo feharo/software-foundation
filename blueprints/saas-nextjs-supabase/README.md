@@ -78,3 +78,7 @@ python3 scripts/doctor.py
 ```
 
 O diagnóstico informa se Node.js, npm, variáveis do Supabase e migração SQL estão presentes, **sem imprimir valores de chaves**. Após o primeiro `npm install`, inclua o arquivo `package-lock.json` no controle de versão para builds mais reprodutíveis.
+
+## Testar interface mobile e desktop
+
+Depois de `npm install` e `npm run build`, instale o Chromium uma vez com `npx playwright install chromium` e execute `npm run test:e2e`. Esses testes cobrem a navegação pública, a tela de login e overflow horizontal nas larguras de 375 px e desktop. Eles **não** exigem um Supabase hospedado.
