@@ -32,20 +32,17 @@ export async function GET(request: Request) {
     if (!Number.isInteger(rawPage) || rawPage < 1 || rawPage > 10000) return fail("Página inválida.", 400);
     const search = (url.searchParams.get("search") || "").trim();
     if (search.length > 80) return fail("Pesquisa muito longa.", 400);
-    const where = "workspace_id = $1 AND (lower(title) LIKE '%' || lower($2) || '%' OR $2 = '')";
-    // Escape LIKE wildcards to treat user input as literal text.
-    const escaped = search.replace(/[\\%_]/g, "\\$&");
-    const safeWhere = "workspace_id = $1 AND (title ILIKE '%' || $2 || '%' ESCAPE '\\\\' OR $2 = '')";
-    void where;
+    // Treat the search term as literal text, not as SQL LIKE wildcards.
+    const safeWhere = "workspace_id = $1 AND ($2 = '' OR strpos(lower(title), lower($2)) > 0)";
     const [items, count] = await Promise.all([
       pool.query<{ id: string; title: string; done: boolean; created_at: string }>(
         "SELECT id, title, done, created_at FROM tasks WHERE " + safeWhere +
         " ORDER BY created_at DESC, id DESC LIMIT $3 OFFSET $4",
-        [workspaceId, escaped, 8, (rawPage - 1) * 8],
+        [workspaceId, search, 8, (rawPage - 1) * 8],
       ),
       pool.query<{ total: string }>(
         "SELECT count(*)::text AS total FROM tasks WHERE " + safeWhere,
-        [workspaceId, escaped],
+        [workspaceId, search],
       ),
     ]);
     return NextResponse.json({
