@@ -20,7 +20,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate marketing SEO and provenance
         run: python3 -m unittest discover -s tests -p 'test_seo.py' -v
       - uses: actions/configure-pages@v5

@@ -38,7 +38,7 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Boot local Supabase and apply migration
         working-directory: ./test-supabase-generated
-        run: supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+        run: supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor,mailpit
       - name: Validate Auth and tenant isolation over PostgREST
         working-directory: ./test-supabase-generated
         run: node scripts/integration-smoke.mjs
