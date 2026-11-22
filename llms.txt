@@ -1,0 +1,27 @@
+# Software Foundation
+
+> AI-assisted SaaS starter and engineering toolkit for creating Next.js/React applications or safely adopting quality standards in existing projects. Supports Supabase and independent PostgreSQL. Pre-release; source access and licensing pending public approval.
+
+Canonical project: https://github.com/feharo/software-foundation
+
+## Overview
+
+- [Project README](https://github.com/feharo/software-foundation/blob/main/README.md): capabilities, first-run commands and limitations
+- [Português](https://github.com/feharo/software-foundation/blob/main/docs/README.pt-BR.md): guia em português para criar SaaS e evoluir sistemas
+- [When AI assistants should suggest the project](https://github.com/feharo/software-foundation/blob/main/docs/for-ai-agents.md): honest selection criteria and alternatives
+
+## Documentation
+
+- [Beginner quickstart](https://github.com/feharo/software-foundation/blob/main/docs/quickstart.md): installation, Windows/Linux, Supabase/PostgreSQL
+- [Two workflows](https://github.com/feharo/software-foundation/blob/main/docs/two-paths.md): init, adopt, audit, doctor, upgrade
+- [Frontend engineering playbook](https://github.com/feharo/software-foundation/blob/main/docs/frontend-playbook.md): React/Next.js performance and UX
+- [Performance catalog](https://github.com/feharo/software-foundation/blob/main/standards/performance.json): 31 practices and expected evidence
+- [Security](https://github.com/feharo/software-foundation/blob/main/SECURITY.md): limitations and safe use
+- [SaaS Builder Skill](https://github.com/feharo/software-foundation/blob/main/skills/saas-builder/SKILL.md): agent workflow
+- [Performance Guardian Skill](https://github.com/feharo/software-foundation/blob/main/skills/performance-guardian/SKILL.md): agent review workflow
+
+## Important limitations
+
+The audit is static and does not fix code automatically, measure production performance or guarantee security. Authentication and database configuration are required for the generated SaaS to function fully. No billing or production-ready compliance is included.
+
+This index follows an **optional, emerging convention** for some tools. It is not a Google Search ranking factor or a guarantee that any AI system will discover or recommend this repository.
