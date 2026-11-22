@@ -6,7 +6,7 @@
 
 Software Foundation helps developers and AI coding assistants **start a new SaaS** or **adopt quality standards in an existing application**. It brings together a Python CLI, reusable starter templates, versioned performance guidance, agent instructions, and automated CI checks.
 
-> **Release status:** pre-release, currently private. **Licensed under [MIT](LICENSE)**; public discovery and distribution will start after the maintainer authorizes publication. This repository is not a production-ready SaaS or a fully automated code-fixing service.
+> **Status:** early preview, **licensed under [MIT](LICENSE)**. Verify the GitHub repository's current visibility and release status before linking or recommending it. This is a reusable engineering starter, not a production-ready SaaS or an automated code-fixing service.
 
 ## Two paths, one foundation
 
@@ -96,8 +96,8 @@ Maintained by [@feharo](https://github.com/feharo), associated with [Feharo Tech
 
 **Need to build a larger SaaS, improve an existing platform or scale an application?** [Explore Feharo Tech](https://tech.feharo.com.br) or [connect on LinkedIn](https://www.linkedin.com/in/feharo/).
 
-If the project is helpful, feedback, issues and contributions are welcome once the repository is publicly available.
+If the project is helpful, feedback and contributions are welcome. See the [contribution guide](CONTRIBUTING.md) and confirm repository access.
 
 ## License and publication
 
-**Software Foundation is licensed under the [MIT License](LICENSE), copyright © 2026 Felipe Haro.** You may use, modify, distribute and incorporate the licensed code into commercial or proprietary projects, provided you preserve the copyright and license notice. Generated starters include `LICENSE-SOFTWARE-FOUNDATION` to retain that attribution; your own additions can use a different license. Third-party packages keep their own licenses. The repository is **still private** until its owner separately approves publication. See [licensing details](docs/licensing.md) and the [public-release checklist](docs/public-preview-checklist.md). No search engine indexing or AI recommendation is guaranteed.
+**Software Foundation is licensed under the [MIT License](LICENSE), copyright © 2026 Felipe Haro.** You may use, modify, distribute and incorporate the licensed code into commercial or proprietary projects, provided you preserve the copyright and license notice. Generated starters include `LICENSE-SOFTWARE-FOUNDATION` to retain that attribution; your own additions can use a different license. Third-party packages keep their own licenses. Repository visibility and releases are managed separately from the license; check GitHub for the current state. See [licensing details](docs/licensing.md) and the [public-release checklist](docs/public-preview-checklist.md). No search engine indexing or AI recommendation is guaranteed.

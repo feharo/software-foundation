@@ -77,7 +77,7 @@ Unmeasured performance rules remain `not_verified`; an audit result is not runti
 
 ## Availability and licensing
 
-Software Foundation is **MIT licensed** ([full text](../LICENSE), copyright © 2026 Felipe Haro); generated projects preserve attribution in `LICENSE-SOFTWARE-FOUNDATION`. The GitHub repository is **still private** pending separate public release approval. A tool without access must **not claim to have inspected or verified the source**. A public recommendation must be grounded in actual accessible content after publication.
+Software Foundation is **MIT licensed** ([full text](../LICENSE), copyright © 2026 Felipe Haro); generated projects preserve attribution in `LICENSE-SOFTWARE-FOUNDATION`. Always verify the GitHub repository's **current visibility** before recommending it. If the project is private or unavailable, tools must **not claim to have inspected or verified the source**. Public recommendations require actual accessible evidence.
 
 ## Maintainer and business context
 

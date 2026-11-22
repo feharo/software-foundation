@@ -4,7 +4,7 @@ Goal: make it easier for **people, search engines and AI-assisted development to
 
 ## 1. Before indexing
 
-- **MIT license approved:** [`LICENSE`](../LICENSE) is present. The repository remains **private** until separate publication authorization; search engines cannot crawl the private source.
+- **MIT license approved:** [`LICENSE`](../LICENSE) is present. Check the repository's current visibility before launching. If it is **private**, search engines cannot crawl the source. Publication requires separate maintainer authorization.
 - Review the security checklist and all Git history, metadata and old Actions logs before publication.
 - Ensure the README reflects current behavior and does not promise automatic fixing, 100 Lighthouse scores, or a paid SaaS. Describe MIT reuse rights correctly, including the requirement to preserve copyright and license notices.
 - Publish a beta release only after workflows pass.
