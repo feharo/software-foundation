@@ -16,7 +16,7 @@ REPLACE = {"__APP_NAME__", "__APP_SLUG__", "__PRIMARY_COLOR__"}
 
 def valid_name(value):
     value = value.strip()
-    if not value or len(value) > NAME_LIMIT or any(ch in value for ch in "\\r\\n\\x00<>"):
+    if not value or len(value) > NAME_LIMIT or not re.fullmatch(r"[\w .,&-]+", value, re.UNICODE):
         raise ValueError("Nome inválido (1-70 caracteres, sem quebras de linha ou < >).")
     return value
 
