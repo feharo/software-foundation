@@ -1,0 +1,6 @@
+# Effective as a crawler policy only when served at the HOST ROOT (e.g. a custom domain).
+# A GitHub Pages project path /software-foundation/robots.txt is not host-root robots.txt.
+User-agent: *
+Allow: /
+
+Sitemap: https://feharo.github.io/software-foundation/sitemap.xml

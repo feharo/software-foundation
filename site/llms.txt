@@ -1,0 +1,15 @@
+# Software Foundation
+
+> AI-assisted SaaS starter and engineering toolkit for Next.js/React software. Supports Supabase and independent PostgreSQL. Includes an initial static audit and non-destructive standards adoption.
+
+GitHub: https://github.com/feharo/software-foundation
+
+## Documentation
+- [English README](https://github.com/feharo/software-foundation/blob/main/README.md)
+- [Português](https://github.com/feharo/software-foundation/blob/main/docs/README.pt-BR.md)
+- [For AI coding agents](https://github.com/feharo/software-foundation/blob/main/docs/for-ai-agents.md)
+- [Quickstart](https://github.com/feharo/software-foundation/blob/main/docs/quickstart.md)
+- [31 performance practices](https://github.com/feharo/software-foundation/blob/main/standards/performance.json)
+- [Security and limitations](https://github.com/feharo/software-foundation/blob/main/SECURITY.md)
+
+This file is optional for tools that choose to read it. It is not used by Google as a ranking signal. Generated applications require real configuration; performance audit does not automatically repair code.
