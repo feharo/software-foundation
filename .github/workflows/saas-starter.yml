@@ -1,0 +1,40 @@
+name: SaaS Starter Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blueprints/**'
+      - 'scripts/new_saas.py'
+      - 'tests/test_new_saas.py'
+      - '.github/workflows/saas-starter.yml'
+  pull_request:
+    paths:
+      - 'blueprints/**'
+      - 'scripts/new_saas.py'
+      - 'tests/test_new_saas.py'
+      - '.github/workflows/saas-starter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scaffold-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test generator
+        run: python3 -m unittest discover -s tests -v
+      - name: Scaffold a test SaaS
+        run: python3 scripts/new_saas.py --name "Sample SaaS" --slug sample-saas --output /tmp/software-foundation-sample --non-interactive
+      - name: Install and compile scaffold
+        working-directory: /tmp/software-foundation-sample
+        run: |
+          npm install --no-audit --no-fund
+          npm run typecheck
+          npm run build

@@ -1,5 +1,7 @@
-# Claude project guidance
+# Claude — Software Foundation
 
-Siga o contrato de engenharia de `AGENTS.md` e o catalogo fixado do repositorio `feharo/software-foundation`.
+Seguir o contrato `AGENTS.md` e as regras fixadas do repositório `feharo/software-foundation`.
 
-Durante implementacao ou review: determine aplicabilidade, evite overengineering, teste em mobile, trate erros e forneca evidencias por regra. Nao afirmar que algo passou sem executar a verificacao. Use a Skill `performance-guardian` quando instalada.
+React/Next.js: aplicar Vercel React Best Practices instalada pelo mantenedor, dando prioridade a waterfalls e bundle size. Ler `docs/frontend-playbook.md` para UX, acessibilidade e mobile.
+
+Criar uma jornada real em vez de telas de demonstração; não declarar autenticação, cobrança ou isolamento concluídos sem integração e testes. Não inventar evidências, métricas ou resultados de CI.

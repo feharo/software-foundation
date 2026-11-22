@@ -1,26 +1,50 @@
 # Software Foundation
 
-Padroes versionados para construir SaaS, APIs e interfaces com qualidade mensuravel. **Nao e um framework de runtime.** Usa instrucoes para agentes, regras auditaveis e um validador sem dependencias externas.
+Fundação de engenharia para criar SaaS profissionais com IA, sem depender de repetir prompts. Une **gerador de projeto**, **Skill para agentes**, **31 padrões verificáveis** e **CI**.
 
-## Comece aqui
+## Primeiro SaaS
 
-1. Leia [as 31 regras](standards/performance.json) e [as decisoes de arquitetura](docs/architecture.md).
-2. Escolha um perfil em [profiles/](profiles/) e registre aplicabilidade no seu projeto.
-3. Copie [templates/AGENTS.md](templates/AGENTS.md) e, se usar Claude, [templates/CLAUDE.md](templates/CLAUDE.md); adapte paths e versao.
-4. Use [skills/performance-guardian/SKILL.md](skills/performance-guardian/SKILL.md) no seu agente.
-5. Execute `python3 scripts/validate_foundation.py` e `python3 -m unittest discover -s tests -v`.
-6. Nos projetos consumidores, use [docs/adoption.md](docs/adoption.md) e a [action reutilizavel](.github/workflows/foundation-quality.yml).
+```sh
+git clone https://github.com/feharo/software-foundation.git
+cd software-foundation
+python3 scripts/new_saas.py --name "Meu SaaS" --output ../meu-saas --non-interactive
+cd ../meu-saas
+npm install
+cp .env.example .env.local
+npm run dev
+```
 
-## O que e realmente automatico?
+A landing abre em http://localhost:3000 mesmo sem configurar o banco. A autenticação por magic link e o dashboard com workspace/tarefas tornam-se funcionais após conectar Supabase e executar a migração SQL. **Cobrança, convites e controles avançados ainda não estão implementados**.
 
-O CI inicial verifica a **integridade dos padroes e dos perfis** e gera relatorio de aplicabilidade sobre o catalogo. Ele nao afirma detectar N+1, Redis, seguranca ou performance real por analise estatica. Esses itens exigem testes no software consumidor, telemetria e revisao tecnica com evidencias.
+Leia [passo a passo para iniciantes](docs/quickstart.md), [guia de frontend](docs/frontend-playbook.md) e [roadmap do SaaS](docs/saas-roadmap.md).
 
-**Niveis**: `required` = exigido quando aplicavel; `conditional` = avaliar com criterio; `advisory` = recomendacao. Uma regra pode ser `not_applicable` com justificativa.
+## A fundação
 
-## Seguranca
+- [31 regras versionadas](standards/performance.json): regra, aplicabilidade, evidência e nível.
+- [SaaS Builder](skills/saas-builder/SKILL.md): Skill para criar uma jornada operacional.
+- [Performance Guardian](skills/performance-guardian/SKILL.md): revisar performance e qualidade, sem inventar resultados.
+- [Templates de agentes](templates/): `AGENTS.md` e `CLAUDE.md`.
+- [Perfis](profiles/): Next.js/NestJS, React SPA e API.
+- [Blueprint Next.js/Supabase](blueprints/saas-nextjs-supabase/): exemplo executável com RLS no banco.
+- [CI de validação](.github/workflows/quality.yml) e [build do starter](.github/workflows/saas-starter.yml).
 
-Nunca colocar credenciais, tokens, URLs internas sensiveis, dados pessoais ou prompts com informacoes de clientes neste repositorio. Revisar permissoes e acesso ao reutilizar workflows entre repositorios privados.
+## Verificações da fundação
 
-## Licenca
+```sh
+python3 scripts/validate_foundation.py
+python3 -m unittest discover -s tests -v
+```
 
-Sem licenca open source definida; todos os direitos reservados ate decisao explicita do mantenedor.
+Esses testes validam o catálogo e o gerador. Não comprovam performance real, segurança ou todas as integrações de um SaaS. O build da aplicação gerada é executado no GitHub Actions; testes reais entre tenants requerem instância Supabase configurada.
+
+## Vercel React Best Practices
+
+Integramos o **método de priorização** e uma referência à skill oficial de React/Next.js da Vercel, sem redistribuir o material. Veja o comando de instalação em [frontend-playbook.md](docs/frontend-playbook.md). As oito áreas começam por waterfalls e bundle.
+
+## Política de segurança
+
+Não salvar credenciais nem `service_role` em `NEXT_PUBLIC_*`. Garantir RLS, autorização no banco/API, backups, tratamento LGPD e observabilidade antes de atender clientes reais.
+
+## Licença
+
+Sem licença open source definida; todos os direitos reservados até decisão do mantenedor.
