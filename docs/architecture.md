@@ -1,5 +1,7 @@
 # Architecture decision guide
 
+For a map of the **actual components and their relationships** (CLI, starters, profiles, standards, Skills, CI), see [Software Foundation ecosystem architecture](ecosystem.md). This page records architectural decision principles.
+
 A fundacao e **policy-as-data**, nao prescricao de arquitetura. Regras e criterios devem ser versionados; os produtos devem fazer o trabalho real e publicar evidencias.
 
 ## Ordem de decisao

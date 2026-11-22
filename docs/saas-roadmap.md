@@ -13,7 +13,7 @@
 1. Onboarding assistido na interface (wizard visual) e escolha entre múltiplos stacks.
 2. Convites e gestão segura de equipe (roles, permissões, aceite, expiração e trilha de auditoria).
 3. Cobrança integrada: planos, trial, checkout, webhooks verificados, idempotência, invoices e cancelamento.
-4. Testes e2e com Supabase local, tenants A/B, sessões, erro e rede lenta.
+4. Expandir a suíte e2e local do Supabase (que já testa autenticação e isolamento entre contas) para sessões expiradas, falhas de rede e casos adicionais de erro.
 5. Componentes de design system com Storybook ou alternativa leve, tokens, temas e avaliações a11y.
 6. Pipelines de produção: preview automático, ambientes, migrações, smoke tests, rollback e verificação de secrets.
 7. Observabilidade e RUM com baseline/alertas, versionamento e painel de conformidade real.
@@ -28,4 +28,4 @@ Não dar a impressão de que uma landing + CRUD são um SaaS comercial pronto. E
 - CLI única `python3 foundation.py` com `init` (projeto novo), `adopt` (projeto existente), `audit` e `doctor`.
 - `adopt` funciona em modo prévia por padrão, instala padrões apenas com `--apply`, preserva `AGENTS.md` e `CLAUDE.md` existentes, impede sobrescrita da pasta gerenciada e é idempotente.
 - `audit` lê o projeto sem alterar seu código e emite 31 status com evidências esperadas, além de checagens estáticas de CI, testes, build e dependências. **Não** declara regras atendidas por presença de arquivos.
-- Próximas fases: verificações dinâmicas proporcionais ao projeto, `foundation fix` com revisão de PR e `foundation upgrade` com migrações seguras.
+- `foundation upgrade` já atualiza **somente o catálogo gerenciado**, com hash e backup. Próximas fases: verificações dinâmicas proporcionais ao projeto, `foundation fix` com revisão de PR e migrações seguras para componentes da aplicação (não implementadas).
