@@ -2,7 +2,7 @@
 
 ## Bloqueadores antes de tornar o repositório público
 
-- [ ] Escolher e aprovar uma licença (`LICENSE`) **com o proprietário do projeto**. Ver `docs/licensing.md`.
+- [x] **Licença MIT aprovada e adicionada** (`LICENSE`). Ver `docs/licensing.md`. A publicação pública continua pendente.
 - [ ] Conferir a execução `Histórico Git - Segredos` (Gitleaks no histórico alcançável, com saída redigida), **mais** uma revisão manual de histórico, metadados, dados pessoais, binários e logs.
 - [ ] Garantir que nenhuma URL interna, identificação de cliente, segredo ou credencial sensível apareça nos exemplos, commits, logs do Actions ou Issues.
 - [ ] Executar `python3 scripts/check_publication.py --strict` após adicionar a licença.
@@ -23,14 +23,14 @@
 
 ```sh
 python3 scripts/check_publication.py
-python3 scripts/check_publication.py --strict  # falha enquanto LICENSE não existir
+python3 scripts/check_publication.py --strict  # exige licença e verifica arquivos rastreados
 python3 -m unittest discover -s tests -v
 python3 foundation.py audit .
 ```
 
 **Escopo do scanner local:** arquivos **rastreados no checkout**, não histórico de commits, logs de builds nem conteúdo de serviços. Rodar uma ferramenta específica de verificação de histórico (por exemplo Gitleaks, revisão humana e verificações do GitHub) antes de publicar. Não apagar um segredo de um commit e achar que a credencial está segura; revogue e faça rotação se houver exposição.
 
-**Escolhas do proprietário:** licença (MIT, Apache-2.0, GPL/AGPL ou outra após análise jurídica) e autorização para tornar o repositório público. O mantenedor deve revisar os textos desta política antes de ativar um canal de segurança ou release.
+**Decisões do proprietário:** licença MIT já aprovada; autorização para tornar o repositório público e publicar a primeira release ainda pendente. O mantenedor deve revisar os textos desta política antes de ativar um canal de segurança ou release.
 
 
 ## Auditoria do histórico Git

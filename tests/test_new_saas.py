@@ -42,6 +42,8 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIn("@playwright/test", package["devDependencies"])
             self.assertTrue((destination / ".env.example").is_file())
             self.assertTrue((destination / "AGENTS.md").is_file())
+            self.assertEqual((destination / "LICENSE-SOFTWARE-FOUNDATION").read_text(encoding="utf-8"),
+                             (ROOT / "LICENSE").read_text(encoding="utf-8"))
             self.assertTrue((destination / "CLAUDE.md").is_file())
             self.assertTrue((destination / ".foundation" / "standards" / "performance.json").is_file())
             instructions = (destination / "AGENTS.md").read_text(encoding="utf-8")
@@ -74,6 +76,8 @@ class ScaffoldTests(unittest.TestCase):
             self.assertTrue((dest / "db" / "schema.sql").exists())
             self.assertTrue((dest / "docker-compose.yml").exists())
             self.assertTrue((dest / "AGENTS.md").exists())
+            self.assertEqual((dest / "LICENSE-SOFTWARE-FOUNDATION").read_text(encoding="utf-8"),
+                             (ROOT / "LICENSE").read_text(encoding="utf-8"))
             self.assertEqual(json.loads((dest / ".foundation" / "profile.json").read_text())["name"], "nextjs-postgres")
 
     def test_unknown_database_rejected_without_creating_files(self):
