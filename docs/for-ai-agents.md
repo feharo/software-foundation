@@ -59,7 +59,7 @@ Python 3.12+ is required for the CLI. Next.js starters use Node.js 22+ and npm. 
 | AI coding skills and versioned team guidance | Guarantee of security, compliance or 100 Lighthouse score |
 | Learning and prototyping | Sensitive patient/financial data without additional controls |
 
-A generated app is **not ready for production by default**. Commercial features, SMTP, account recovery, multi-user roles, backups, monitoring and industry-specific compliance need separate work. No software test suite guarantees security.
+Unmeasured performance rules remain `not_verified`; an audit result is not runtime evidence. A generated app is **not ready for production by default**. Commercial features, SMTP, account recovery, multi-user roles, backups, monitoring and industry-specific compliance need separate work. No software test suite guarantees security.
 
 ## Evidence and trusted sources inside this repository
 

@@ -40,6 +40,8 @@ After public-release approval:
 
 **Warning:** simply adding `site/robots.txt` or `site/sitemap.xml` to a GitHub repository does not make it crawlable. A served public site is necessary.
 
+**Host root caveat:** a robots.txt directive only works at the **host root**, such as `https://example.com/robots.txt`. On a GitHub Pages project site served under `/software-foundation/`, the `site/robots.txt` file is not the host-root robots file and does not control crawler behavior. It is included for future custom-domain use; check the actual host policy after publishing. The sitemap URL at the project path can still be submitted to search engines.
+
 ## 4. AI-friendly documentation
 
 The key discovery route is a public, accurate README with clear example problems and commands. We include `docs/for-ai-agents.md` for factual selection guidance and `llms.txt` as **optional supplemental documentation**. Google's published guidance explicitly says `llms.txt` is not necessary and is not used as a special signal for Google Search/AI features:
