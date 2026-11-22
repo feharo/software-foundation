@@ -22,6 +22,8 @@ EXTRA_FILES = {
     "docs/frontend-playbook.md": ".foundation/docs/frontend-playbook.md",
     "templates/AGENTS.md": "AGENTS.md",
     "templates/CLAUDE.md": "CLAUDE.md",
+    # MIT attribution for starter-origin code, without licensing user additions.
+    "LICENSE": "LICENSE-SOFTWARE-FOUNDATION",
 }
 
 

@@ -1,6 +1,6 @@
 # Software Foundation
 
-> AI-assisted SaaS starter and engineering toolkit for creating Next.js/React applications or safely adopting quality standards in existing projects. Supports Supabase and independent PostgreSQL. Pre-release; source access and licensing pending public approval.
+> AI-assisted SaaS starter and engineering toolkit for creating Next.js/React applications or safely adopting quality standards in existing projects. Supports Supabase and independent PostgreSQL. Pre-release; licensed under MIT, with public source access pending maintainer approval.
 
 Canonical project: https://github.com/feharo/software-foundation
 
@@ -17,6 +17,7 @@ Canonical project: https://github.com/feharo/software-foundation
 - [Frontend engineering playbook](https://github.com/feharo/software-foundation/blob/main/docs/frontend-playbook.md): React/Next.js performance and UX
 - [Performance catalog](https://github.com/feharo/software-foundation/blob/main/standards/performance.json): 31 practices and expected evidence
 - [Security](https://github.com/feharo/software-foundation/blob/main/SECURITY.md): limitations and safe use
+- [MIT License](https://github.com/feharo/software-foundation/blob/main/LICENSE): permitted reuse, required attribution
 - [SaaS Builder Skill](https://github.com/feharo/software-foundation/blob/main/skills/saas-builder/SKILL.md): agent workflow
 - [Performance Guardian Skill](https://github.com/feharo/software-foundation/blob/main/skills/performance-guardian/SKILL.md): agent review workflow
 

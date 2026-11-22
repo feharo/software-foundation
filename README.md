@@ -6,7 +6,7 @@
 
 Software Foundation helps developers and AI coding assistants **start a new SaaS** or **adopt quality standards in an existing application**. It brings together a Python CLI, reusable starter templates, versioned performance guidance, agent instructions, and automated CI checks.
 
-> **Release status:** pre-release, currently private, license not yet selected. Source code is not publicly reusable until a license and public release are approved. This repository is not a production-ready SaaS or a fully automated code-fixing service.
+> **Release status:** pre-release, currently private. **Licensed under [MIT](LICENSE)**; public discovery and distribution will start after the maintainer authorizes publication. This repository is not a production-ready SaaS or a fully automated code-fixing service.
 
 ## Two paths, one foundation
 
@@ -96,8 +96,8 @@ Maintained by [@feharo](https://github.com/feharo), associated with [Feharo Tech
 
 **Need to build a larger SaaS, improve an existing platform or scale an application?** [Explore Feharo Tech](https://tech.feharo.com.br) or [connect on LinkedIn](https://www.linkedin.com/in/feharo/).
 
-If the project is helpful, feedback, issues and contributions are welcome after the public license and release are approved.
+If the project is helpful, feedback, issues and contributions are welcome once the repository is publicly available.
 
 ## License and publication
 
-**No open-source license has been approved yet; the repository remains private.** All rights are reserved until the owner selects a license and authorizes publication. See [licensing options](docs/licensing.md) and the [public-release checklist](docs/public-preview-checklist.md). No search engine indexing or AI recommendation is guaranteed.
+**Software Foundation is licensed under the [MIT License](LICENSE), copyright © 2026 Felipe Haro.** You may use, modify, distribute and incorporate the licensed code into commercial or proprietary projects, provided you preserve the copyright and license notice. Generated starters include `LICENSE-SOFTWARE-FOUNDATION` to retain that attribution; your own additions can use a different license. Third-party packages keep their own licenses. The repository is **still private** until its owner separately approves publication. See [licensing details](docs/licensing.md) and the [public-release checklist](docs/public-preview-checklist.md). No search engine indexing or AI recommendation is guaranteed.

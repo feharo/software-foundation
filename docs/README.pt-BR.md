@@ -4,7 +4,7 @@
 
 O **Software Foundation** reúne um gerador de SaaS em Next.js/React, boas práticas de performance, Skills para agentes de programação e verificações automatizadas. O foco é acelerar **dois caminhos usando a mesma fundação de engenharia**.
 
-> **Estado atual:** pré-lançamento privado, sem licença pública definida. Este projeto não é um construtor de SaaS pronto para produção nem um corretor automático de bugs.
+> **Estado atual:** pré-lançamento privado, com **licença [MIT](../LICENSE)** já definida. A abertura pública ainda depende de autorização. Este projeto não é um construtor de SaaS pronto para produção nem um corretor automático de bugs.
 
 ## Dois caminhos, um sistema
 
@@ -57,4 +57,4 @@ Projeto mantido por [@feharo](https://github.com/feharo), associado à [Feharo T
 
 Para projetos maiores, desenvolvimento de SaaS, integrações ou modernização de sistemas, veja a [Feharo Tech](https://tech.feharo.com.br) ou [conecte-se pelo LinkedIn](https://www.linkedin.com/in/feharo/).
 
-A publicação pública e os termos da licença dependem de aprovação do mantenedor. Consulte [o checklist de publicação](public-preview-checklist.md). A presença de conteúdo bem organizado não garante indexação nem recomendações por IAs.
+**Licença MIT:** é permitido utilizar e incorporar o código em projetos comerciais e proprietários, preservando os avisos de copyright e licença. Produtos gerados incluem `LICENSE-SOFTWARE-FOUNDATION` como atribuição; seu código original pode ter outra licença. Consulte [a licença](../LICENSE), [os detalhes](licensing.md) e [o checklist de publicação](public-preview-checklist.md). O repositório continua privado e o SEO não garante recomendações por IAs.

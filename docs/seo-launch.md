@@ -4,9 +4,9 @@ Goal: make it easier for **people, search engines and AI-assisted development to
 
 ## 1. Before indexing
 
-- The repository must be **public** and have an approved `LICENSE`; at present it is private and unlicensed.
+- **MIT license approved:** [`LICENSE`](../LICENSE) is present. The repository remains **private** until separate publication authorization; search engines cannot crawl the private source.
 - Review the security checklist and all Git history, metadata and old Actions logs before publication.
-- Ensure the README reflects current behavior and does not promise automatic fixing, 100 Lighthouse scores, a paid SaaS, or open-source rights before a license is adopted.
+- Ensure the README reflects current behavior and does not promise automatic fixing, 100 Lighthouse scores, or a paid SaaS. Describe MIT reuse rights correctly, including the requirement to preserve copyright and license notices.
 - Publish a beta release only after workflows pass.
 
 ## 2. Set repository metadata (GitHub web UI, requires repo administration)
@@ -17,7 +17,7 @@ Suggested **About / description** (English, under 160 characters):
 
 Suggested topics, focused on things already supported:
 
-`saas-starter`, `nextjs`, `react`, `postgresql`, `supabase`, `developer-tools`, `ai-coding`, `performance`, `software-engineering`, `open-source` **only after adopting a public license**.
+`saas-starter`, `nextjs`, `react`, `postgresql`, `supabase`, `developer-tools`, `ai-coding`, `performance`, `software-engineering`, `open-source` — add these **after the repository is public**, since the MIT license is already adopted.
 
 Suggested repository website: `https://feharo.github.io/software-foundation/` **only after Pages is enabled and returns HTTP 200**. Otherwise use `https://tech.feharo.com.br` (verified company site), if appropriate for the desired destination.
 
