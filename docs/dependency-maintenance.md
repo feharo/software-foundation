@@ -11,7 +11,7 @@ The workflow `Clean old merged PR branches` runs after a push to `main`
 and may be triggered manually. It uses a scoped GitHub Actions token to remove
 only:
 
-- branches from PRs confirmed merged in this repository;
+- branches from PRs confirmed merged in this repository, with prefixes `feat/`, `chore/` or `docs/`;
 - `dependabot/` branches from PRs closed as superseded or deliberately ignored.
 
 In both cases, branch SHA must match the closed PR's last head SHA, and there

@@ -15,7 +15,7 @@ import urllib.request
 
 REPO = "feharo/software-foundation"
 PROTECTED = {"main", "master", "develop", "development", "production", "staging", "release"}
-EXPECTED_PREFIXES = ("feat/", "chore/", "dependabot/")
+EXPECTED_PREFIXES = ("feat/", "chore/", "docs/", "dependabot/")
 
 
 def may_delete(pr, repository, open_branches):
