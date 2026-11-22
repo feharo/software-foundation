@@ -6,3 +6,16 @@ node_modules/
 *.tsbuildinfo
 .next-env.d.ts
 .DS_Store
+
+# Browser smoke artifacts
+playwright-report/
+test-results/
+blob-report/
+
+# Local Supabase generated state
+supabase/.temp/
+supabase/.branches/
+supabase/.profiles/
+
+# Foundation local safety backups
+.foundation/backups/

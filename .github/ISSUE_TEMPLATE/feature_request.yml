@@ -1,0 +1,27 @@
+name: Solicitar melhoria
+description: Sugerir uma melhoria para criação ou modernização de software.
+title: "feat: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema que você quer resolver
+      description: "Descreva a necessidade, não apenas uma biblioteca."
+    validations:
+      required: true
+  - type: dropdown
+    id: path
+    attributes:
+      label: Caminho
+      options:
+        - Criar projeto novo
+        - Evoluir projeto existente
+        - Ambos
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Resultado esperado e critérios de aceite
+    validations:
+      required: true

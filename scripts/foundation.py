@@ -329,6 +329,10 @@ def main(argv=None):
     au.add_argument("--output", help="Salvar relatório, sem sobrescrever arquivos existentes.")
     doc = cmd.add_parser("doctor", help="Verificar ferramentas locais, sem conexões externas.")
     doc.add_argument("path", nargs="?", default=".")
+    up = cmd.add_parser("upgrade", help="Comparar e atualizar o catálogo gerenciado sem tocar no código.")
+    up.add_argument("path", nargs="?", default=".")
+    up.add_argument("--apply", action="store_true", help="Aplicar só após validar hashes, com backup local.")
+    up.add_argument("--json", action="store_true", help="Exibir estado em JSON.")
     args = parser.parse_args(argv)
     try:
         if args.command == "adopt":
@@ -357,6 +361,18 @@ def main(argv=None):
             else:
                 print(output, end="")
             return 0
+        if args.command == "upgrade":
+            from scripts import upgrade as updater
+            result = updater.upgrade(args.path, apply=args.apply)
+            if args.json:
+                print(json.dumps(result, ensure_ascii=False, indent=2))
+            else:
+                print("Projeto: " + result["project"])
+                print("Estado: " + result["status"])
+                print("Origem: " + result["installed_version"] +
+                      " | Fundação atual: " + result["available_version"])
+                print(result["message"])
+            return 2 if result["status"] == "conflict" else 0
         if args.command == "doctor":
             discovered = check_project(args.path)
             print("Foundation " + VERSION + " — Diagnóstico local")

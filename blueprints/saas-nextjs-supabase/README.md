@@ -14,6 +14,24 @@ npm run dev
 
 Acesse http://localhost:3000. **Sem Supabase, somente a landing e as telas de orientação funcionam.**
 
+## Testar localmente sem conta no Supabase
+
+Além da opção hospedada, o projeto gerado inclui `supabase/config.toml`,
+migração versionada e `scripts/integration-smoke.mjs`.
+
+Com Node.js, Docker e a CLI Supabase instalada:
+
+```sh
+supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+node scripts/integration-smoke.mjs
+supabase stop
+```
+
+O smoke usa **duas contas descartáveis** e valida login, criação de workspace, tarefas,
+leitura e escrita entre tenants e bloqueio de usuários não autenticados.
+Ele não depende de chaves, permissões ou serviços do seu projeto hospedado.
+Veja `https://github.com/feharo/software-foundation/blob/main/docs/supabase-testing.md`.
+
 ## Ativar o banco e autenticação
 
 1. Crie seu projeto em https://supabase.com/dashboard.
@@ -60,3 +78,7 @@ python3 scripts/doctor.py
 ```
 
 O diagnóstico informa se Node.js, npm, variáveis do Supabase e migração SQL estão presentes, **sem imprimir valores de chaves**. Após o primeiro `npm install`, inclua o arquivo `package-lock.json` no controle de versão para builds mais reprodutíveis.
+
+## Testar interface mobile e desktop
+
+Depois de `npm install` e `npm run build`, instale o Chromium uma vez com `npx playwright install chromium` e execute `npm run test:e2e`. Esses testes cobrem a navegação pública, a tela de login e overflow horizontal nas larguras de 375 px e desktop. Eles **não** exigem um Supabase hospedado.

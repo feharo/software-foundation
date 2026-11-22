@@ -1,0 +1,38 @@
+name: Relatar problema
+description: Reporte um bug reproduzível sem compartilhar informações sensíveis.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: "Não inclua tokens ou dados pessoais. Vulnerabilidades devem ser reportadas pelo canal privado descrito em SECURITY.md."
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - CLI init
+        - CLI adopt / audit
+        - Starter Supabase
+        - Starter PostgreSQL
+        - Skills / documentação
+        - CI / outro
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir
+      description: Comandos, cenário e comportamento observado; sem segredos.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Ambiente
+      placeholder: "SO, versão de Node e Python, perfil do starter"
