@@ -17,17 +17,17 @@ Software Foundation is **more than a boilerplate generator**. Its layers work to
 ```mermaid
 flowchart TB
     DEV["Developer or AI coding assistant"] --> CLI["One CLI: foundation.py"]
-    CORE["Shared engineering knowledge<br/>31 rules | 7 profiles | AI instructions | 2 Skills"] -. "guides" .-> CLI
+    CORE["Shared engineering knowledge<br/>31 rules | 7 profiles | AI instructions | 2 Skills"] -.->|guides| CLI
     CLI --> INIT["INIT<br/>Create a new SaaS"]
     CLI --> EXIST["ADOPT / AUDIT / UPGRADE / DOCTOR<br/>Work with an existing app"]
     INIT --> STARTERS["Next.js + React executable starters"]
     STARTERS --> SUPA["Supabase profile<br/>Auth + PostgreSQL + RLS"]
     STARTERS --> PG["Independent PostgreSQL profile<br/>Better Auth + server-side authorization"]
     EXIST --> OUTPUT["Stack-aware guidance<br/>.foundation/ manifest + static reports"]
-    CORE -. "informs" .-> STARTERS
-    CORE -. "informs" .-> OUTPUT
-    CI["Verification layer<br/>Python | build | Playwright | database isolation | Windows | Gitleaks"] -. "tests" .-> CLI
-    CI -. "tests" .-> STARTERS
+    CORE -.->|informs| STARTERS
+    CORE -.->|informs| OUTPUT
+    CI["Verification layer<br/>Python | build | Playwright | database isolation | Windows | Gitleaks"] -.->|tests| CLI
+    CI -.->|tests| STARTERS
 ```
 
 The diagram represents the **current implemented relationships**, not a promise that Skills run automatically or that the CLI refactors an application. For a component-by-component explanation, see [Ecosystem architecture](docs/ecosystem.md).

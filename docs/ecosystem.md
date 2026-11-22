@@ -47,12 +47,12 @@ flowchart TB
     CLI --> UPGRADE
     CLI --> DOCTOR
 
-    CATALOG -. used by .-> INIT
-    CATALOG -. used by .-> AUDIT
-    CATALOG -. used by .-> UPGRADE
-    PROFILES -. selected by .-> ADOPT
-    PROFILES -. selected by .-> INIT
-    AGENTS -. copied or consulted by .-> ADOPT
+    CATALOG -.->|used by| INIT
+    CATALOG -.->|used by| AUDIT
+    CATALOG -.->|used by| UPGRADE
+    PROFILES -.->|selected by| ADOPT
+    PROFILES -.->|selected by| INIT
+    AGENTS -.->|copied or consulted by| ADOPT
 
     subgraph NEW["New application output"]
         BOOT["Executable Next.js / React starter"]
@@ -73,8 +73,8 @@ flowchart TB
     UPGRADE --> BACKUP
 
     CHECKS["GitHub Actions + tests<br/>Python, Next build, Playwright, DB tenant isolation, Windows, Git history"]
-    CHECKS -. verifies .-> CLI
-    CHECKS -. verifies .-> BOOT
+    CHECKS -.->|verifies| CLI
+    CHECKS -.->|verifies| BOOT
 ```
 
 **Interpretation:** arrows from rules/profiles indicate guidance or data consumption, not running services. The agent Skills are **optional content**, not agents that the CLI provisions or executes. The two backend variants are **alternatives**: generating a project selects one, not both.

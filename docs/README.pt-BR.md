@@ -13,17 +13,17 @@ O projeto reúne **uma CLI Python**, **2 starters Next.js/React executáveis**, 
 ```mermaid
 flowchart TB
     DEV["Desenvolvedor ou assistente de IA"] --> CLI["CLI única: foundation.py"]
-    CORE["Fundação compartilhada<br/>31 regras | 7 perfis | instruções de IA | 2 Skills"] -. "orienta" .-> CLI
+    CORE["Fundação compartilhada<br/>31 regras | 7 perfis | instruções de IA | 2 Skills"] -.->|orienta| CLI
     CLI --> INIT["INIT<br/>Criar um novo SaaS"]
     CLI --> EXIST["ADOPT / AUDIT / UPGRADE / DOCTOR<br/>Trabalhar em um projeto existente"]
     INIT --> STARTERS["Starters executáveis Next.js + React"]
     STARTERS --> SUPA["Supabase<br/>Auth + PostgreSQL + RLS"]
     STARTERS --> PG["PostgreSQL independente<br/>Better Auth + autorização no servidor"]
     EXIST --> OUTPUT["Padrões aplicados por perfil<br/>.foundation/ + relatórios estáticos"]
-    CORE -. "orienta" .-> STARTERS
-    CORE -. "orienta" .-> OUTPUT
-    CI["Testes<br/>Python | build | Playwright | isolamento | Windows | Gitleaks"] -. "valida" .-> CLI
-    CI -. "valida" .-> STARTERS
+    CORE -.->|orienta| STARTERS
+    CORE -.->|orienta| OUTPUT
+    CI["Testes<br/>Python | build | Playwright | isolamento | Windows | Gitleaks"] -.->|valida| CLI
+    CI -.->|valida| STARTERS
 ```
 
 Este diagrama mostra **as relações que já existem no código**. A CLI não executa automaticamente as Skills, e o comando `audit` não refatora o projeto.
