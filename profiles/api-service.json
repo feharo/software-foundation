@@ -1,0 +1,31 @@
+{
+  "name": "api-service",
+  "stack": [
+    "HTTP API",
+    "SQL"
+  ],
+  "focus": [
+    "api",
+    "backend",
+    "database",
+    "infra"
+  ],
+  "recommend": [
+    "P005",
+    "P008",
+    "P009",
+    "P012",
+    "P016",
+    "P017",
+    "P019",
+    "P024",
+    "P025"
+  ],
+  "conditional": [
+    "P007",
+    "P010",
+    "P018",
+    "P028"
+  ],
+  "notes": "Regras de UI sao nao aplicaveis quando nao existe interface web."
+}

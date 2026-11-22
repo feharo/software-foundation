@@ -1,0 +1,20 @@
+{
+  "project": "example-project",
+  "foundation_revision": "PIN_COMMIT_SHA",
+  "profile": "nextjs-nestjs",
+  "generated_at": "2026-11-22T00:00:00Z",
+  "results": [
+    {
+      "id": "P001",
+      "status": "not_verified",
+      "reason": "Auditoria de carregamento ainda nao executada",
+      "evidence": []
+    },
+    {
+      "id": "P028",
+      "status": "not_applicable",
+      "reason": "Projeto executado em instancia unica sem necessidade de escala horizontal",
+      "evidence": []
+    }
+  ]
+}

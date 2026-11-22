@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-22",
+  "levels": {
+    "required": "Obrigatoria quando a condicao de aplicacao for verdadeira",
+    "conditional": "Exige decisao arquitetural explicita com evidencia",
+    "advisory": "Boa pratica recomendada"
+  },
+  "rules": [
+    {
+      "id": "P001",
+      "title": "Skeleton e estados de carregamento",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_ui",
+      "guidance": "Usar skeleton proporcional ao conteudo, com estados de erro e vazio.",
+      "evidence": "Teste visual de carregamento e acessibilidade"
+    },
+    {
+      "id": "P002",
+      "title": "Imagens WebP ou AVIF",
+      "category": "assets",
+      "level": "required",
+      "applies_when": "when_images",
+      "guidance": "Otimizar formatos modernos com fallback adequado e dimensoes explicitas.",
+      "evidence": "Auditoria de formatos, dimensoes e peso"
+    },
+    {
+      "id": "P003",
+      "title": "Evitar chamadas duplicadas de API",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_remote_fetch",
+      "guidance": "Deduplicar requisicoes equivalentes e cancelar buscas obsoletas.",
+      "evidence": "Teste de rede para requisicoes simultaneas"
+    },
+    {
+      "id": "P004",
+      "title": "Debounce na busca e autocompletar",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_search",
+      "guidance": "Debounce ajustado ao caso com cancelamento e busca acessivel.",
+      "evidence": "Teste de digitacao rapida e contagem de chamadas"
+    },
+    {
+      "id": "P005",
+      "title": "Paginacao da API",
+      "category": "api",
+      "level": "required",
+      "applies_when": "when_collections",
+      "guidance": "Paginar respostas extensas com limites e ordenacao deterministica.",
+      "evidence": "Teste de limites, cursor e proxima pagina"
+    },
+    {
+      "id": "P006",
+      "title": "Arquivos estaticos por CDN",
+      "category": "infra",
+      "level": "conditional",
+      "applies_when": "when_global_static_assets",
+      "guidance": "Usar CDN quando houver beneficio mensuravel e politica de invalidacao.",
+      "evidence": "Verificar headers, origem e distribuicao"
+    },
+    {
+      "id": "P007",
+      "title": "Tarefas lentas em filas",
+      "category": "backend",
+      "level": "conditional",
+      "applies_when": "when_async_jobs",
+      "guidance": "Desacoplar operacoes demoradas com idempotencia, retentativas e DLQ quando necessario.",
+      "evidence": "Teste de retry, observabilidade e falhas"
+    },
+    {
+      "id": "P008",
+      "title": "Eliminar consultas N+1",
+      "category": "database",
+      "level": "required",
+      "applies_when": "when_relational_access",
+      "guidance": "Usar batch/eager loading e verificar planos de consulta.",
+      "evidence": "Teste do numero de queries com volume representativo"
+    },
+    {
+      "id": "P009",
+      "title": "Brotli ou Gzip",
+      "category": "infra",
+      "level": "required",
+      "applies_when": "when_http_text",
+      "guidance": "Comprimir respostas textuais grandes sem recomprimir formatos compactados.",
+      "evidence": "Verificar Content-Encoding e negociacao"
+    },
+    {
+      "id": "P010",
+      "title": "Cache Redis de dados quentes",
+      "category": "cache",
+      "level": "conditional",
+      "applies_when": "when_cache_justified",
+      "guidance": "Usar Redis apenas para dados com ganho comprovado e estrategia TTL/invalidação.",
+      "evidence": "Medir hit ratio, latencia e consistencia"
+    },
+    {
+      "id": "P011",
+      "title": "Remover dependencias nao utilizadas",
+      "category": "quality",
+      "level": "required",
+      "applies_when": "always",
+      "guidance": "Revisar dependencias de producao e desenvolvimento, evitando remocao sem testes.",
+      "evidence": "Analisar dependencia e executar build/testes"
+    },
+    {
+      "id": "P012",
+      "title": "Timeout em APIs externas",
+      "category": "api",
+      "level": "required",
+      "applies_when": "when_external_api",
+      "guidance": "Aplicar timeout, cancelamento e retries limitados somente quando seguros.",
+      "evidence": "Teste de timeout, erro e recuperacao"
+    },
+    {
+      "id": "P013",
+      "title": "Streaming de tokens de IA",
+      "category": "ai",
+      "level": "conditional",
+      "applies_when": "when_streaming_ai",
+      "guidance": "Transmitir progressivamente quando melhorar UX, com cancelamento e fallback.",
+      "evidence": "Teste de primeiro token, cancelamento e erro"
+    },
+    {
+      "id": "P014",
+      "title": "Atualizacao otimista da interface",
+      "category": "frontend",
+      "level": "conditional",
+      "applies_when": "when_safe_mutation",
+      "guidance": "Aplicar atualizacao otimista apenas com rollback e conflitos tratados.",
+      "evidence": "Teste de sucesso, conflito e rollback"
+    },
+    {
+      "id": "P015",
+      "title": "Lazy loading de imagens fora da tela",
+      "category": "assets",
+      "level": "required",
+      "applies_when": "when_images",
+      "guidance": "Carregar imagens nao criticas sob demanda; priorizar imagem LCP.",
+      "evidence": "Teste de viewport e imagem principal"
+    },
+    {
+      "id": "P016",
+      "title": "Requisicoes independentes em paralelo",
+      "category": "api",
+      "level": "required",
+      "applies_when": "when_independent_requests",
+      "guidance": "Executar em paralelo sem estourar limites e sem dependencia oculta.",
+      "evidence": "Teste de latencia e limites de concorrencia"
+    },
+    {
+      "id": "P017",
+      "title": "Indices para consultas frequentes",
+      "category": "database",
+      "level": "required",
+      "applies_when": "when_database_queries",
+      "guidance": "Definir indices a partir de filtros, joins e EXPLAIN; evitar excesso de indices.",
+      "evidence": "Analisar EXPLAIN e impacto em escrita"
+    },
+    {
+      "id": "P018",
+      "title": "Rastrear lentidao com OpenTelemetry",
+      "category": "observability",
+      "level": "conditional",
+      "applies_when": "when_distributed_or_production",
+      "guidance": "Instrumentar traces e spans com amostragem e sem dados sensiveis.",
+      "evidence": "Verificar rastros ponta a ponta"
+    },
+    {
+      "id": "P019",
+      "title": "Proximidade entre app e banco",
+      "category": "infra",
+      "level": "required",
+      "applies_when": "when_remote_database",
+      "guidance": "Preferir mesma regiao e conectividade privada, considerando resiliencia.",
+      "evidence": "Medir RTT e latencia app-banco"
+    },
+    {
+      "id": "P020",
+      "title": "Renderizacao no servidor ou build",
+      "category": "frontend",
+      "level": "conditional",
+      "applies_when": "when_ssr_or_seo_helps",
+      "guidance": "Escolher SSR, SSG ou CSR por pagina conforme SEO e comportamento.",
+      "evidence": "Auditar TTFB, hidratacao e cache"
+    },
+    {
+      "id": "P021",
+      "title": "Scripts de terceiros apos conteudo principal",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_third_party_scripts",
+      "guidance": "Adiar scripts nao criticos e controlar consentimento e dependencias.",
+      "evidence": "Auditoria de waterfall e main thread"
+    },
+    {
+      "id": "P022",
+      "title": "Code splitting por rota",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_multi_route_frontend",
+      "guidance": "Separar bundles por rota e recurso evitando fragmentacao excessiva.",
+      "evidence": "Analisar bundle e transferencia inicial"
+    },
+    {
+      "id": "P023",
+      "title": "Virtualizar listas muito longas",
+      "category": "frontend",
+      "level": "conditional",
+      "applies_when": "when_large_lists",
+      "guidance": "Virtualizar apenas quando DOM e interacao indicarem necessidade, preservando acessibilidade.",
+      "evidence": "Teste com muitos itens, teclado e leitor de tela"
+    },
+    {
+      "id": "P024",
+      "title": "Selecionar apenas colunas necessarias",
+      "category": "database",
+      "level": "required",
+      "applies_when": "when_database_queries",
+      "guidance": "Evitar SELECT * em consultas criticas e limitar dados retornados.",
+      "evidence": "Analisar query e tamanho do payload"
+    },
+    {
+      "id": "P025",
+      "title": "Pool de conexoes",
+      "category": "database",
+      "level": "required",
+      "applies_when": "when_database_connections",
+      "guidance": "Configurar pool com limites alinhados ao banco e numero de instancias.",
+      "evidence": "Teste de concorrencia e saturacao"
+    },
+    {
+      "id": "P026",
+      "title": "Evitar re-render desnecessario",
+      "category": "frontend",
+      "level": "required",
+      "applies_when": "when_reactive_ui",
+      "guidance": "Medir renders e corrigir estados e dependencias antes de memoizar indiscriminadamente.",
+      "evidence": "Profiler com interacoes reais"
+    },
+    {
+      "id": "P027",
+      "title": "Cache de estaticos no navegador",
+      "category": "assets",
+      "level": "required",
+      "applies_when": "when_versioned_assets",
+      "guidance": "Usar cache longo para assets com hash e curto para HTML mutavel.",
+      "evidence": "Verificar Cache-Control, ETag e invalidacao"
+    },
+    {
+      "id": "P028",
+      "title": "Balancear multiplas instancias",
+      "category": "infra",
+      "level": "conditional",
+      "applies_when": "when_horizontal_scaling",
+      "guidance": "Adicionar balanceador apos validar necessidade, healthcheck e sessoes stateless.",
+      "evidence": "Teste de distribuicao e failover"
+    },
+    {
+      "id": "P029",
+      "title": "Hospedar fontes e limitar pesos",
+      "category": "assets",
+      "level": "required",
+      "applies_when": "when_custom_fonts",
+      "guidance": "Auto-hospedar WOFF2 autorizado, limitar variantes e usar font-display.",
+      "evidence": "Auditoria de requisicoes e CLS"
+    },
+    {
+      "id": "P030",
+      "title": "Monitorar performance de usuarios reais",
+      "category": "observability",
+      "level": "required",
+      "applies_when": "when_production_ui",
+      "guidance": "Coletar Core Web Vitals no percentil 75 por dispositivo sem PII.",
+      "evidence": "Painel RUM e segmentacao mobile/desktop"
+    },
+    {
+      "id": "P031",
+      "title": "Testar em celular e rede lenta",
+      "category": "testing",
+      "level": "required",
+      "applies_when": "when_ui",
+      "guidance": "Validar fluxos criticos em viewport mobile e rede simulada lenta.",
+      "evidence": "Teste Playwright/Lighthouse mobile e evidencias"
+    }
+  ]
+}
