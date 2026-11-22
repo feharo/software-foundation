@@ -60,3 +60,8 @@ Consulte `SECURITY.md`, `PRODUCT_BRIEF.md` e `AGENTS.md` para continuar o desenv
 ## Testar interface mobile e desktop
 
 Depois de `npm install` e `npm run build`, instale o Chromium com `npx playwright install chromium` e execute `npm run test:e2e`. Os testes cobrem landing, login e overflow horizontal em mobile e desktop, sem acessar banco de produção.
+
+
+## Licença do código de origem
+
+Este starter utiliza código original do **Software Foundation**, distribuído sob **licença MIT**. O gerador inclui o arquivo `LICENSE-SOFTWARE-FOUNDATION` com a licença e o aviso de copyright do projeto original. **Mantenha esse arquivo** ao copiar ou distribuir partes substanciais do starter, inclusive em produtos comerciais. Você pode manter suas próprias implementações sob outra licença; as dependências externas possuem seus próprios termos.

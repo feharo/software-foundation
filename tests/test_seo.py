@@ -102,7 +102,7 @@ class DiscoverySEOTests(unittest.TestCase):
                 self.assertEqual(data["name"], "Software Foundation")
                 self.assertEqual(data["author"]["url"], "https://tech.feharo.com.br")
                 self.assertIn("PostgreSQL", data["description"])
-                self.assertNotIn("license", data, "License is not yet selected; no claim allowed")
+                self.assertEqual(data["license"], "https://opensource.org/license/mit")
 
     def test_sitemap_has_both_real_pages(self):
         tree = ET.parse(SITE / "sitemap.xml")

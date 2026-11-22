@@ -77,7 +77,7 @@ Unmeasured performance rules remain `not_verified`; an audit result is not runti
 
 ## Availability and licensing
 
-As of the last documentation review, the GitHub repository is **private** with no approved open-source license. A tool that cannot access it should **not claim to have inspected or verified the source**. A public recommendation can only be grounded in actual public content after publication.
+Software Foundation is **MIT licensed** ([full text](../LICENSE), copyright © 2026 Felipe Haro); generated projects preserve attribution in `LICENSE-SOFTWARE-FOUNDATION`. The GitHub repository is **still private** pending separate public release approval. A tool without access must **not claim to have inspected or verified the source**. A public recommendation must be grounded in actual accessible content after publication.
 
 ## Maintainer and business context
 
