@@ -12,7 +12,7 @@ class PublicationChecksTests(unittest.TestCase):
             file1 = root / ".env.local"
             file1.write_text("NO_REAL_SECRETS_HERE=1\n", encoding="utf-8")
             file2 = root / "test.ts"
-            file2.write_text("-----BEGIN PRIVATE KEY-----\nfake\n", encoding="utf-8")
+            file2.write_text("-----BEGIN " + "PRIVATE KEY-----\nfake\n", encoding="utf-8")
             findings = scan_files(root, [Path(".env.local"), Path("test.ts")])
             self.assertIn((".env.local", "sensitive_filename"), findings)
             self.assertIn(("test.ts", "private_key"), findings)
