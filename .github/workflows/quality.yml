@@ -18,3 +18,5 @@ jobs:
         run: python3 scripts/validate_foundation.py
       - name: Unit tests
         run: python3 -m unittest discover -s tests -v
+      - name: Strict publication safety check (including MIT license)
+        run: python3 scripts/check_publication.py --strict
