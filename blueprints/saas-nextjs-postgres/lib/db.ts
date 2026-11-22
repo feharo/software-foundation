@@ -1,4 +1,3 @@
-import "server-only";
 import { Pool } from "pg";
 
 // One pool per Node.js server process. Never imported into Client Components.
