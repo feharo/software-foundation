@@ -33,6 +33,9 @@ class FakeAPI:
 class BranchCleanupTests(unittest.TestCase):
     def test_only_merged_or_closed_bot_prs_are_eligible(self):
         self.assertTrue(may_delete(pull("feat/old"), REPO, set()))
+        self.assertTrue(may_delete(pull("docs/ecosystem"), REPO, set()))
+        self.assertFalse(may_delete(pull("docs/in-progress", merged=False), REPO, set()))
+        self.assertFalse(may_delete(pull("docs/active"), REPO, {"docs/active"}))
         self.assertTrue(may_delete(pull("dependabot/pkg", merged=False, bot=True), REPO, set()))
         self.assertFalse(may_delete(pull("chore/unmerged", merged=False), REPO, set()))
         self.assertFalse(may_delete(pull("feat/active", closed=False), REPO, set()))
