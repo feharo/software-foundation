@@ -4,8 +4,8 @@ on:
     branches: [main]
     paths:
       - 'blueprints/**'
+      - 'profiles/**'
       - 'standards/performance.json'
-      - 'profiles/nextjs-supabase.json'
       - 'templates/**'
       - 'docs/frontend-playbook.md'
       - 'scripts/new_saas.py'
@@ -14,6 +14,7 @@ on:
   pull_request:
     paths:
       - 'blueprints/**'
+      - 'profiles/**'
       - 'scripts/new_saas.py'
       - 'tests/test_new_saas.py'
       - '.github/workflows/saas-starter.yml'
@@ -23,7 +24,11 @@ permissions:
 jobs:
   scaffold-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [supabase, postgres]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,10 +39,14 @@ jobs:
           node-version: '22'
       - name: Test generator
         run: python3 -m unittest discover -s tests -v
-      - name: Scaffold a test SaaS
-        run: python3 scripts/new_saas.py --name "Sample SaaS" --slug sample-saas --output /tmp/software-foundation-sample --non-interactive
+      - name: Scaffold new SaaS
+        run: python3 scripts/new_saas.py --name "Sample SaaS" --slug sample-saas --database ${{ matrix.database }} --output /tmp/software-foundation-sample --non-interactive
       - name: Install and compile scaffold
         working-directory: /tmp/software-foundation-sample
+        env:
+          DATABASE_URL: postgresql://foundation:ci-only@127.0.0.1:5432/foundation
+          BETTER_AUTH_URL: http://localhost:3000
+          BETTER_AUTH_SECRET: ci-only-do-not-use-this-as-a-real-secret-123456789
         run: |
           npm install --no-audit --no-fund
           npm run typecheck

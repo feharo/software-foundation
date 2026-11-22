@@ -8,6 +8,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BLUEPRINT = ROOT / "blueprints" / "saas-nextjs-supabase"
+POSTGRES_OVERLAY = ROOT / "blueprints" / "saas-nextjs-postgres"
+DATABASES = {"supabase", "postgres"}
+POSTGRES_EXCLUDE = {"lib/supabase.ts", "supabase/schema.sql"}
 NAME_LIMIT = 70
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
@@ -15,7 +18,6 @@ REPLACE = {"__APP_NAME__", "__APP_SLUG__", "__PRIMARY_COLOR__"}
 EXTRA_FILES = {
     "standards/performance.json": ".foundation/standards/performance.json",
     "docs/frontend-playbook.md": ".foundation/docs/frontend-playbook.md",
-    "profiles/nextjs-supabase.json": ".foundation/profile.json",
     "templates/AGENTS.md": "AGENTS.md",
     "templates/CLAUDE.md": "CLAUDE.md",
 }
@@ -55,21 +57,29 @@ def valid_color(color):
     return color.lower()
 
 
-def create(name, output, slug=None, color="#2558cf"):
+def create(name, output, slug=None, color="#2558cf", database="supabase"):
     name = valid_name(name)
     slug = valid_slug(slug or make_slug(name))
     color = valid_color(color)
+    if database not in DATABASES:
+        raise ValueError("Banco inválido: use supabase ou postgres.")
     destination = Path(output).expanduser().resolve()
     if destination.exists():
         raise FileExistsError("A pasta de destino já existe; escolha outra para não sobrescrever arquivos.")
     if not BLUEPRINT.is_dir():
         raise FileNotFoundError("Blueprint SaaS não encontrado. Execute a partir do repositório completo.")
     mapping = {"__APP_NAME__": name, "__APP_SLUG__": slug, "__PRIMARY_COLOR__": color}
-    paths = [p for p in BLUEPRINT.rglob("*") if p.is_file()]
+    paths = {p.relative_to(BLUEPRINT): p for p in BLUEPRINT.rglob("*") if p.is_file()}
+    if database == "postgres":
+        if not POSTGRES_OVERLAY.is_dir():
+            raise FileNotFoundError("Overlay PostgreSQL não encontrado.")
+        for excluded in POSTGRES_EXCLUDE:
+            paths.pop(Path(excluded), None)
+        paths.update({p.relative_to(POSTGRES_OVERLAY): p for p in POSTGRES_OVERLAY.rglob("*") if p.is_file()})
     destination.mkdir(parents=True)
     try:
-        for source in paths:
-            target = destination / source.relative_to(BLUEPRINT)
+        for relative, source in sorted(paths.items()):
+            target = destination / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             data = source.read_text(encoding="utf-8")
             for placeholder, value in mapping.items():
@@ -77,6 +87,10 @@ def create(name, output, slug=None, color="#2558cf"):
             if any(placeholder in data for placeholder in REPLACE):
                 raise RuntimeError(f"Placeholder não resolvido em {source.name}")
             target.write_text(data, encoding="utf-8")
+        profile = ROOT / "profiles" / f"nextjs-{database}.json"
+        profile_target = destination / ".foundation" / "profile.json"
+        profile_target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(profile, profile_target)
         for source_path, target_path in EXTRA_FILES.items():
             source = ROOT / source_path
             target = destination / target_path
@@ -89,10 +103,12 @@ def create(name, output, slug=None, color="#2558cf"):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Inicie um SaaS Next.js + Supabase com práticas de qualidade.")
+    parser = argparse.ArgumentParser(description="Inicie um SaaS com Supabase ou PostgreSQL independente.")
     parser.add_argument("--name", help="Nome exibido no produto")
     parser.add_argument("--slug", help="Identificador técnico do projeto")
     parser.add_argument("--output", help="Pasta do novo produto")
+    parser.add_argument("--database", "--db", choices=sorted(DATABASES), default=None,
+                        help="Banco/autenticação: supabase ou postgres (sem Supabase)")
     parser.add_argument("--primary-color", default="#2558cf", help="Cor principal #RRGGBB")
     parser.add_argument("--non-interactive", action="store_true", help="Não abrir perguntas")
     options = parser.parse_args(argv)
@@ -102,12 +118,22 @@ def main(argv=None):
         name = options.name or input("Como seu SaaS se chamará? ").strip()
         slug = options.slug or make_slug(name)
         output = options.output or str(Path.cwd() / slug)
+        database = options.database
+        if not options.non_interactive and database is None:
+            print("Infraestrutura de dados:")
+            print("  1) Supabase — serviço gerenciado de banco + autenticação")
+            print("  2) PostgreSQL independente — VPS, Docker ou banco gerenciado; Better Auth")
+            choice = input("Escolha [1]: ").strip()
+            if choice not in ("", "1", "2"):
+                raise ValueError("Opção inválida; escolha 1 ou 2.")
+            database = "postgres" if choice == "2" else "supabase"
+        database = database or "supabase"
         if not options.non_interactive:
             user_slug = input(f"Identificador [{slug}]: ").strip()
             slug = user_slug or slug
             user_output = input(f"Pasta [{output}]: ").strip()
             output = user_output or output
-        dest = create(name, output, slug, options.primary_color)
+        dest = create(name, output, slug, options.primary_color, database=database)
         print(f"\nProjeto criado em: {dest}")
         print("\nPróximos passos:")
         print(f"  cd {dest}")

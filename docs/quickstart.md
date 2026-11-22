@@ -1,37 +1,51 @@
-# Primeiro SaaS em poucos passos
+# Comece um SaaS com o banco de dados de sua escolha
 
-Este guia serve para quem não programa. É necessário instalar Python 3 e Node.js 22 ou 24 no computador, e criar um projeto Supabase gratuito ou pago.
+O gerador suporta **duas opções**. Nenhuma exige conhecimento de banco para criar a landing; para autenticação e dados reais é necessária a configuração da opção escolhida.
 
-## 1. Gerar o projeto
+| Opção | Melhor quando | Componentes |
+|---|---|---|
+| `supabase` | Quer começar rapidamente com autenticação e banco gerenciados | Next.js + Supabase Auth + PostgreSQL com RLS |
+| `postgres` | Já tem PostgreSQL ou quer controlar infraestrutura | Next.js + PostgreSQL (VPS, Docker ou gerenciado) + Better Auth |
+
+**Ambas suportam produtos profissionais**. A decisão é sobre custos, operação e controle, não sobre o nível de habilidade.
+
+## Criar com assistente
 
 ```sh
 git clone https://github.com/feharo/software-foundation.git
 cd software-foundation
-python3 scripts/new_saas.py --name "Minha Agenda" --output ../minha-agenda --non-interactive
-cd ../minha-agenda
-npm install
-cp .env.example .env.local
-npm run dev
+python3 scripts/new_saas.py --name "Minha Agenda"
 ```
 
-Abra http://localhost:3000. A landing pública e as páginas já possuem estrutura visual, estados de configuração e responsividade.
+Escolha 1 (Supabase) ou 2 (PostgreSQL independente). Para automatizar sem perguntas:
 
-> No Windows PowerShell, use `py scripts/new_saas.py ...` e `Copy-Item .env.example .env.local`. Repo é privado: para clonar, faça login no GitHub.
+```sh
+python3 scripts/new_saas.py --name "Minha Agenda" --database postgres --output ../minha-agenda --non-interactive
+```
 
-## 2. Habilitar login, banco e áreas privadas
+## Se escolher Supabase
 
-1. Crie um projeto em https://supabase.com/dashboard .
-2. Abra SQL Editor e execute `supabase/schema.sql` do SaaS gerado.
-3. No Supabase, acesse Project Settings > API (ou Connect), copie **Project URL** e **publishable/anon key**.
-4. Cole no `.env.local` em `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. Não use secret/service_role key.
-5. Em Authentication > URL Configuration, configure `http://localhost:3000` e permita o endereço `http://localhost:3000/dashboard` como redirect.
-6. Reinicie `npm run dev`. Insira seu e-mail na tela de login e abra o link recebido.
-7. Crie um workspace e a primeira tarefa no dashboard.
+1. `cd ../minha-agenda && npm install`
+2. `cp .env.example .env.local`
+3. Configure projeto no Supabase, `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+4. Execute `supabase/schema.sql` no SQL Editor do Supabase.
+5. Configure Auth > URL Configuration e então `npm run dev`. O login é por magic link.
 
-Os e-mails de teste podem estar sujeitos a restrições de envio no Supabase; configure SMTP dedicado para lançar o produto.
+## Se escolher PostgreSQL independente
 
-## 3. Antes de publicar
+1. `cd ../minha-agenda && npm install`
+2. `cp .env.example .env.local`
+3. Para PostgreSQL local, instale Docker e use `docker compose up -d db`; em VPS/banco gerenciado, informe o URI em `DATABASE_URL`.
+4. Gere um segredo seguro (`openssl rand -base64 32`) e preencha `BETTER_AUTH_SECRET` e `BETTER_AUTH_URL`.
+5. Execute `npx auth@latest migrate` para criar as tabelas de autenticação, depois `npm run db:migrate` para criar workspaces e tarefas.
+6. Rode `npm run dev`, entre em `/login`, crie conta e acesse o painel.
 
-A amostra não inclui faturamento, convites, papéis avançados nem política de privacidade adaptada ao produto. Não aceite clientes pagantes nem dados sensíveis antes de configurar e testar autenticação, RLS, backups, recuperação, LGPD e monitoramento.
+Leia o README do projeto gerado, especialmente os requisitos de segurança para produção. O Postgres próprio **não usa nenhuma chave/API do Supabase**.
 
-Veja `docs/saas-roadmap.md` e `blueprints/saas-nextjs-supabase/README.md`.
+## Em Windows PowerShell
+
+Use `py scripts/new_saas.py ...` e `Copy-Item .env.example .env.local`.
+
+## Observação de produção
+
+O starter PostgreSQL inclui autenticação por e-mail/senha para uso inicial, mas **verificação de e-mail, recuperação de senha com provedor de e-mail, backups, observabilidade, testes multiusuário e LGPD devem ser configurados antes de lançar**. Nunca publique o serviço de banco de exemplo na Internet. Ambos os perfis precisam de testes de autorização reais.
