@@ -65,6 +65,7 @@ Unmeasured performance rules remain `not_verified`; an audit result is not runti
 
 - [Readme (English)](../README.md)
 - [Readme (Português)](README.pt-BR.md)
+- [Ecosystem architecture](ecosystem.md): implemented components, dependencies and trust boundaries
 - [Supported CLI design](two-paths.md)
 - [Quickstart](quickstart.md)
 - [Supabase/Auth/RLS testing](supabase-testing.md)

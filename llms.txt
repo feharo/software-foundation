@@ -6,7 +6,8 @@ Canonical project: https://github.com/feharo/software-foundation
 
 ## Overview
 
-- [Project README](https://github.com/feharo/software-foundation/blob/main/README.md): capabilities, first-run commands and limitations
+- [Project README](https://github.com/feharo/software-foundation/blob/main/README.md): full ecosystem overview, component map and commands
+- [Ecosystem architecture](https://github.com/feharo/software-foundation/blob/main/docs/ecosystem.md): how CLI, 7 profiles, 31 rules, 2 Skills, two starters and CI connect
 - [Português](https://github.com/feharo/software-foundation/blob/main/docs/README.pt-BR.md): guia em português para criar SaaS e evoluir sistemas
 - [When AI assistants should suggest the project](https://github.com/feharo/software-foundation/blob/main/docs/for-ai-agents.md): honest selection criteria and alternatives
 

@@ -6,6 +6,7 @@ GitHub: https://github.com/feharo/software-foundation
 
 ## Documentation
 - [English README](https://github.com/feharo/software-foundation/blob/main/README.md)
+- [Full ecosystem architecture](https://github.com/feharo/software-foundation/blob/main/docs/ecosystem.md)
 - [Português](https://github.com/feharo/software-foundation/blob/main/docs/README.pt-BR.md)
 - [For AI coding agents](https://github.com/feharo/software-foundation/blob/main/docs/for-ai-agents.md)
 - [Quickstart](https://github.com/feharo/software-foundation/blob/main/docs/quickstart.md)
