@@ -6,7 +6,7 @@ if (!process.env.DATABASE_URL || !process.env.BETTER_AUTH_SECRET || process.env.
   process.exit(1);
 }
 const command = process.platform === "win32" ? "npx.cmd" : "npx";
-const result = spawnSync(command, ["--yes", "auth@latest", "migrate", "--yes"], {
+const result = spawnSync(command, ["--yes", "auth@1.7.27", "migrate", "--yes"], {
   stdio: "inherit",
   env: process.env,
   shell: process.platform === "win32",

@@ -25,6 +25,20 @@ jobs:
   scaffold-build:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: foundation
+          POSTGRES_USER: foundation
+          POSTGRES_PASSWORD: ci-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U foundation -d foundation"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=10
     strategy:
       fail-fast: false
       matrix:
@@ -51,3 +65,20 @@ jobs:
           npm install --no-audit --no-fund
           npm run typecheck
           npm run build
+      - name: Real database migrations and tenant isolation smoke
+        if: matrix.database == 'postgres'
+        working-directory: /tmp/software-foundation-sample
+        run: |
+          printf '%s\n' \
+            "DATABASE_URL=postgresql://foundation:ci-only@127.0.0.1:5432/foundation" \
+            "BETTER_AUTH_URL=http://localhost:3000" \
+            "BETTER_AUTH_SECRET=ci-only-do-not-use-this-as-a-real-secret-123456789" > .env.local
+          npm run db:setup
+          npm run start > /tmp/foundation-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 40); do
+            if curl -fsS http://localhost:3000 >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/integration-smoke.mjs
