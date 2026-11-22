@@ -1,0 +1,40 @@
+{
+  "name": "nextjs-nestjs",
+  "stack": [
+    "Next.js",
+    "NestJS",
+    "PostgreSQL"
+  ],
+  "focus": [
+    "frontend",
+    "api",
+    "database",
+    "assets",
+    "testing"
+  ],
+  "recommend": [
+    "P001",
+    "P003",
+    "P004",
+    "P005",
+    "P008",
+    "P012",
+    "P017",
+    "P022",
+    "P025",
+    "P030",
+    "P031"
+  ],
+  "conditional": [
+    "P006",
+    "P007",
+    "P010",
+    "P013",
+    "P014",
+    "P018",
+    "P020",
+    "P023",
+    "P028"
+  ],
+  "notes": "Redis e filas apenas quando houver justificativa; SSR selecionado por rota."
+}

@@ -1,0 +1,33 @@
+{
+  "name": "react-spa",
+  "stack": [
+    "React",
+    "REST API"
+  ],
+  "focus": [
+    "frontend",
+    "assets",
+    "testing"
+  ],
+  "recommend": [
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P005",
+    "P015",
+    "P021",
+    "P022",
+    "P026",
+    "P027",
+    "P029",
+    "P030",
+    "P031"
+  ],
+  "conditional": [
+    "P006",
+    "P014",
+    "P023"
+  ],
+  "notes": "SSR nao e obrigatorio para SPA; avaliar SEO e distribuicao."
+}

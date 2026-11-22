@@ -1,0 +1,3 @@
+interface:
+  display_name: "Performance Guardian"
+  short_description: "Implementa e audita as 31 boas praticas de software com evidencias."
