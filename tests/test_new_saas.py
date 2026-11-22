@@ -52,11 +52,41 @@ class ScaffoldTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 module.create("Outro Produto", destination)
 
+    def test_postgres_option_is_isolated_and_keeps_quality_rules(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dest = Path(directory) / "postgres-saas"
+            module.create("Meu Negócio", dest, database="postgres")
+            pkg = json.loads((dest / "package.json").read_text())
+            self.assertIn("pg", pkg["dependencies"])
+            self.assertIn("better-auth", pkg["dependencies"])
+            self.assertNotIn("@supabase/supabase-js", pkg["dependencies"])
+            self.assertFalse((dest / "lib" / "supabase.ts").exists())
+            self.assertFalse((dest / "supabase" / "schema.sql").exists())
+            self.assertTrue((dest / "app" / "api" / "tasks" / "route.ts").exists())
+            self.assertTrue((dest / "db" / "schema.sql").exists())
+            self.assertTrue((dest / "docker-compose.yml").exists())
+            self.assertTrue((dest / "AGENTS.md").exists())
+            self.assertEqual(json.loads((dest / ".foundation" / "profile.json").read_text())["name"], "nextjs-postgres")
+
+    def test_unknown_database_rejected_without_creating_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "invalid"
+            with self.assertRaises(ValueError):
+                module.create("Teste", target, database="../../wrong")
+            self.assertFalse(target.exists())
+
     def test_blueprint_no_unresolved_vars(self):
         with tempfile.TemporaryDirectory() as directory:
             destination = Path(directory) / "app"
             module.create("Teste", destination)
             for source in destination.rglob("*"):
+                if source.is_file():
+                    contents = source.read_text(encoding="utf-8")
+                    for placeholder in module.REPLACE:
+                        self.assertNotIn(placeholder, contents, f"{source}: {placeholder}")
+            pg_destination = Path(directory) / "postgres"
+            module.create("Teste", pg_destination, database="postgres")
+            for source in pg_destination.rglob("*"):
                 if source.is_file():
                     contents = source.read_text(encoding="utf-8")
                     for placeholder in module.REPLACE:

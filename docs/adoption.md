@@ -2,7 +2,7 @@
 
 ## Caminho minimo
 
-- Definir perfil: `profiles/nextjs-nestjs.json`, `profiles/react-spa.json` ou `profiles/api-service.json`.
+- Definir perfil: `profiles/nextjs-supabase.json`, `profiles/nextjs-postgres.json`, `profiles/nextjs-nestjs.json`, `profiles/react-spa.json` ou `profiles/api-service.json`. Para projetos novos use `scripts/new_saas.py --database supabase|postgres`.
 - Fixar uma revisao/tag deste repositorio; atualizar deliberadamente e testar compatibilidade.
 - Copiar instrucao apropriada do diretorio `templates/` para a raiz do projeto consumidor.
 - Instalar a skill `performance-guardian` onde o agente de desenvolvimento procurar skills; o caminho varia por plataforma.

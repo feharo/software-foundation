@@ -1,12 +1,13 @@
 # Roadmap da fundação: de instruções a fábrica de SaaS
 
-## Implementado na V2
+## Implementado na V2/V3
 - Catálogo das 31 práticas com aplicabilidade.
 - Gerador de projeto `scripts/new_saas.py` com entrada interativa ou não interativa.
 - Blueprint Next.js + React + Supabase, landing responsiva, login magic link, dashboard, workspace e tarefas com paginação.
+- Opção independente de PostgreSQL para Docker, VPS ou banco gerenciado, com Better Auth, rotas protegidas e migrações SQL do aplicativo.
 - SQL de Row Level Security para isolamento de dados por workspace e entrada protegida.
 - Skill `saas-builder` e playbook de frontend com prioridades da Vercel.
-- CI de geração, testes Python e tentativa de build real do blueprint.
+- CI de geração, testes Python e build dos dois perfis do blueprint.
 
 ## Próximas entregas — não implementadas
 1. Onboarding assistido na interface (wizard visual) e escolha entre múltiplos stacks.

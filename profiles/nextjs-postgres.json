@@ -1,0 +1,46 @@
+{
+  "name": "nextjs-postgres",
+  "stack": [
+    "Next.js 16",
+    "React 19",
+    "Node.js",
+    "PostgreSQL",
+    "Better Auth",
+    "node-postgres"
+  ],
+  "focus": [
+    "frontend",
+    "api",
+    "database",
+    "security",
+    "testing"
+  ],
+  "recommend": [
+    "P001",
+    "P003",
+    "P004",
+    "P005",
+    "P009",
+    "P012",
+    "P017",
+    "P019",
+    "P022",
+    "P024",
+    "P025",
+    "P026",
+    "P030",
+    "P031"
+  ],
+  "conditional": [
+    "P006",
+    "P007",
+    "P010",
+    "P013",
+    "P014",
+    "P018",
+    "P020",
+    "P023",
+    "P028"
+  ],
+  "notes": "Sem Supabase. Sessões e autenticação gerenciadas no Next.js com Better Auth; autorização tenant aplicada a todas as queries no servidor. Banco local, VPS ou PostgreSQL gerenciado."
+}
