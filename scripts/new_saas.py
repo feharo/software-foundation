@@ -100,7 +100,7 @@ def create(name, output, slug=None, color="#2558cf", database="supabase"):
             "profile": f"nextjs-{database}",
             "catalog_sha256": hashlib.sha256((ROOT / "standards/performance.json").read_bytes()).hexdigest(),
         }
-        manifest_target.write_text(json.dumps(manifest_content, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        manifest_target.write_text(json.dumps(manifest_content, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         for source_path, target_path in EXTRA_FILES.items():
             source = ROOT / source_path
             target = destination / target_path
