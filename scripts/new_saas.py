@@ -106,6 +106,13 @@ def create(name, output, slug=None, color="#2558cf", database="supabase"):
             target = destination / target_path
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, target)
+        if database == "supabase":
+            # Reuse the same SQL baseline for hosted SQL Editor and local CLI migrations.
+            # No separate, stale copy of the RLS policies is maintained.
+            migration_dir = destination / "supabase" / "migrations"
+            migration_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(destination / "supabase" / "schema.sql",
+                            migration_dir / "20261122000000_initial.sql")
     except Exception:
         shutil.rmtree(destination)
         raise

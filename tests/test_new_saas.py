@@ -32,6 +32,11 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIn("Minha Agenda", (destination / "app" / "page.tsx").read_text())
             self.assertIn("#1b4bb1", (destination / "app" / "globals.css").read_text())
             self.assertTrue((destination / "supabase" / "schema.sql").is_file())
+            migration = destination / "supabase" / "migrations" / "20261122000000_initial.sql"
+            self.assertTrue(migration.is_file())
+            self.assertEqual(migration.read_text(), (destination / "supabase" / "schema.sql").read_text())
+            self.assertTrue((destination / "supabase" / "config.toml").is_file())
+            self.assertTrue((destination / "scripts" / "integration-smoke.mjs").is_file())
             self.assertTrue((destination / ".env.example").is_file())
             self.assertTrue((destination / "AGENTS.md").is_file())
             self.assertTrue((destination / "CLAUDE.md").is_file())

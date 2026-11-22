@@ -1,0 +1,48 @@
+name: Supabase Local Auth & RLS
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blueprints/saas-nextjs-supabase/**'
+      - 'scripts/new_saas.py'
+      - 'tests/test_new_saas.py'
+      - '.github/workflows/supabase-local.yml'
+  pull_request:
+    paths:
+      - 'blueprints/saas-nextjs-supabase/**'
+      - 'scripts/new_saas.py'
+      - 'tests/test_new_saas.py'
+      - '.github/workflows/supabase-local.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  auth-rls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Generate fresh Supabase SaaS
+        run: python3 foundation.py init --name "Supabase Local Test" --slug supabase-local-test --database supabase --output ./test-supabase-generated --non-interactive
+      - name: Install generated frontend dependencies
+        working-directory: ./test-supabase-generated
+        run: npm install --no-audit --no-fund
+      - name: Boot local Supabase and apply migration
+        working-directory: ./test-supabase-generated
+        run: supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+      - name: Validate Auth and tenant isolation over PostgREST
+        working-directory: ./test-supabase-generated
+        run: node scripts/integration-smoke.mjs
+      - name: Stop local stack
+        if: always()
+        working-directory: ./test-supabase-generated
+        run: supabase stop --no-backup || true

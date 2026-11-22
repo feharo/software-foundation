@@ -14,6 +14,24 @@ npm run dev
 
 Acesse http://localhost:3000. **Sem Supabase, somente a landing e as telas de orientação funcionam.**
 
+## Testar localmente sem conta no Supabase
+
+Além da opção hospedada, o projeto gerado inclui `supabase/config.toml`,
+migração versionada e `scripts/integration-smoke.mjs`.
+
+Com Node.js, Docker e a CLI Supabase instalada:
+
+```sh
+supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+node scripts/integration-smoke.mjs
+supabase stop
+```
+
+O smoke usa **duas contas descartáveis** e valida login, criação de workspace, tarefas,
+leitura e escrita entre tenants e bloqueio de usuários não autenticados.
+Ele não depende de chaves, permissões ou serviços do seu projeto hospedado.
+Veja `https://github.com/feharo/software-foundation/blob/main/docs/supabase-testing.md`.
+
 ## Ativar o banco e autenticação
 
 1. Crie seu projeto em https://supabase.com/dashboard.
