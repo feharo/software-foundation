@@ -20,7 +20,7 @@ test("user can navigate to the login screen on each viewport", async ({ page }) 
     await expect(emailField).toBeVisible();
   } else {
     // Supabase is intentionally not connected: show an actionable warning.
-    await expect(page.getByRole("alert")).toContainText(/não foi configurado/i);
+    await expect(page.getByRole("alert").filter({ hasText: /não foi configurado/i })).toBeVisible();
   }
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   expect(overflow, "The login screen should not scroll horizontally").toBe(false);
