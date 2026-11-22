@@ -57,3 +57,5 @@ python3 foundation.py upgrade ../aplicacao --apply
 ```
 
 O primeiro comando compara o SHA-256 registrado no manifesto com o catálogo instalado e o catálogo da fundação. Se encontrar mudanças manuais no catálogo, retorna conflito e não toca em nada. Com `--apply`, só atualiza o catálogo `.foundation/standards/performance.json` e o manifesto correspondente, mantendo backup local dos arquivos anteriores. **Não modifica dependências, banco, código, agentes personalizados ou o CI do projeto consumidor.**
+
+**Arquivos de backup:** a adoção não modifica o `.gitignore` de aplicações existentes. Se usar `upgrade --apply`, ignore `.foundation/backups/` no controle de versão do projeto consumidor, ou faça uma revisão consciente antes de versionar os backups.

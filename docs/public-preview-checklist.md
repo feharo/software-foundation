@@ -6,7 +6,7 @@
 - [ ] Revisar **todo o histórico Git** para tokens, senhas, dados pessoais, arquivos `.env`, dados internos e binários. O verificador local não substitui uma auditoria de histórico.
 - [ ] Garantir que nenhuma URL interna, identificação de cliente, segredo ou credencial sensível apareça nos exemplos, commits, logs do Actions ou Issues.
 - [ ] Executar `python3 scripts/check_publication.py --strict` após adicionar a licença.
-- [ ] Confirmar que os dois perfis geram e compilam no CI; registrar o resultado do teste Supabase local.
+- [ ] Confirmar que os dois perfis geram e compilam no CI, que Playwright passa em mobile e desktop e que o teste Supabase Auth/RLS local termina com sucesso.
 - [ ] Instalar os dois perfis em ambiente limpo (Windows PowerShell + Linux) e conferir as instruções de primeiro uso.
 - [ ] Preparar um primeiro release de prévia, changelog e limitações explícitas.
 - [ ] Habilitar proteções de branch, Dependabot e ferramentas de segurança compatíveis com o plano GitHub.
