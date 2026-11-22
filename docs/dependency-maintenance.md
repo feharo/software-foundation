@@ -25,3 +25,10 @@ To preview manually with GitHub Actions permissions, execute
 
 To avoid accidental churn, do **not** enable unconditional auto-merge for
 major dependency upgrades. Review production changes, CI and real user flows.
+
+GitHub Pages deployment is **manual** and not live yet. Major version upgrades of
+`actions/configure-pages`, `actions/upload-pages-artifact` and
+`actions/deploy-pages` are temporarily excluded from Dependabot version PRs.
+Review those actions together when the owner authorizes the public Pages launch;
+run a manual staging/deployment validation before adopting new majors. The
+`actions/checkout` update to v7 was separately validated in Linux and Windows CI.

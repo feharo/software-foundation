@@ -12,6 +12,14 @@ updates:
       actions-major-review:
         patterns: ["*"]
         update-types: ["major"]
+    # GitHub Pages is not live. Review its major actions together during release prep.
+    ignore:
+      - dependency-name: "actions/configure-pages"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/upload-pages-artifact"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/deploy-pages"
+        update-types: ["version-update:semver-major"]
 
   # Keep the TypeScript and Node type majors aligned with the tested Node 22 baseline.
   # Major migrations require deliberate compatibility checks across both blueprints.
