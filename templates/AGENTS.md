@@ -1,12 +1,15 @@
 # Engineering rules — Software Foundation
 
-Fonte de verdade: https://github.com/feharo/software-foundation (fixar SHA/tag antes de usar em producao).
+Fonte de verdade: https://github.com/feharo/software-foundation (fixar SHA/tag antes de usar em produção).
 
-Para cada feature:
-1. Detecte stack, necessidades de escala e regras aplicaveis em `standards/performance.json`.
-2. Planeje implementacao minima sem introduzir Redis, filas, SSR ou balanceamento sem justificativa.
-3. Escreva testes e apresente evidencias de performance, acessibilidade, banco e erros.
-4. Relate falhas e itens nao verificados; nunca simule compliance.
-5. Corrija ate o CI ficar verde antes de propor merge.
+Para cada funcionalidade:
+1. Identificar jornada de usuário, stack, escala e riscos de privacidade/multi-tenant.
+2. Consultar `.foundation/standards/performance.json` e `.foundation/docs/frontend-playbook.md` no SaaS gerado; na fundação original, usar `standards/performance.json` e `docs/frontend-playbook.md`.
+3. Priorizar waterfalls e bundle size, depois server/client, re-render e refinamentos; revisar a Skill oficial Vercel React Best Practices se instalada.
+4. Implementar estados loading/skeleton, vazio, erro, sessão expirada, acessibilidade e mobile first.
+5. Isolar operações por tenant no backend/RLS; não confiar em filtros do cliente.
+6. Desenvolver a menor solução viável; não introduzir Redis, filas, SSR ou balanceamento sem justificativa.
+7. Registrar evidências verificáveis; nunca simular conformidade.
+8. Executar lint, testes, types, build e fluxos mobile antes de merge.
 
-Use a skill `performance-guardian` se disponivel. Este arquivo deve ser adaptado ao repositorio consumidor.
+Use as Skills `saas-builder` e `performance-guardian` quando disponíveis. Adapte este arquivo ao projeto consumidor.

@@ -1,0 +1,67 @@
+import importlib.util
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location("new_saas", ROOT / "scripts/new_saas.py")
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+
+class ScaffoldTests(unittest.TestCase):
+    def test_slug_and_color_validation(self):
+        self.assertEqual(module.make_slug("Gestão Clínica 360"), "gestao-clinica-360")
+        with self.assertRaises(ValueError):
+            module.valid_slug("../insecure")
+        with self.assertRaises(ValueError):
+            module.valid_color("red; background: url(foo)")
+        with self.assertRaises(ValueError):
+            module.valid_color("#ff5533")
+        with self.assertRaises(ValueError):
+            module.valid_name("bad\nname")
+
+    def test_create_project_and_no_overwrite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / "novo-saas"
+            module.create("Minha Agenda", destination, slug="minha-agenda", color="#1b4bb1")
+            package = json.loads((destination / "package.json").read_text())
+            self.assertEqual(package["name"], "minha-agenda")
+            self.assertIn("next", package["dependencies"])
+            self.assertIn("Minha Agenda", (destination / "app" / "page.tsx").read_text())
+            self.assertIn("#1b4bb1", (destination / "app" / "globals.css").read_text())
+            self.assertTrue((destination / "supabase" / "schema.sql").is_file())
+            self.assertTrue((destination / ".env.example").is_file())
+            self.assertTrue((destination / "AGENTS.md").is_file())
+            self.assertTrue((destination / "CLAUDE.md").is_file())
+            self.assertTrue((destination / ".foundation" / "standards" / "performance.json").is_file())
+            instructions = (destination / "AGENTS.md").read_text(encoding="utf-8")
+            self.assertIn(".foundation/standards/performance.json", instructions)
+            self.assertTrue((destination / ".github" / "workflows" / "ci.yml").is_file())
+            schema = (destination / "supabase" / "schema.sql").read_text(encoding="utf-8").lower()
+            for entity in ("workspaces", "workspace_memberships", "tasks"):
+                self.assertIn(f"alter table public.{entity} enable row level security", schema)
+            self.assertIn("is_workspace_member", schema)
+            env_lines = (destination / ".env.example").read_text().splitlines()
+            public_values = [line.split("=", 1)[1].strip() for line in env_lines
+                             if line.startswith("NEXT_PUBLIC_") and "=" in line]
+            self.assertTrue(public_values)
+            self.assertTrue(all(not value for value in public_values),
+                            "Template must not contain actual credential values")
+            with self.assertRaises(FileExistsError):
+                module.create("Outro Produto", destination)
+
+    def test_blueprint_no_unresolved_vars(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / "app"
+            module.create("Teste", destination)
+            for source in destination.rglob("*"):
+                if source.is_file():
+                    contents = source.read_text(encoding="utf-8")
+                    for placeholder in module.REPLACE:
+                        self.assertNotIn(placeholder, contents, f"{source}: {placeholder}")
+
+
+if __name__ == "__main__":
+    unittest.main()
