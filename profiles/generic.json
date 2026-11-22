@@ -1,0 +1,21 @@
+{
+  "name": "generic",
+  "stack": [
+    "Other/undetected stack"
+  ],
+  "focus": [
+    "quality",
+    "security",
+    "testing"
+  ],
+  "recommend": [
+    "P011",
+    "P012"
+  ],
+  "conditional": [
+    "P007",
+    "P018",
+    "P028"
+  ],
+  "notes": "Perfil neutro: apenas orienta avaliação, sem impor Next.js, React ou banco específico."
+}
