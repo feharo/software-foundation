@@ -15,7 +15,7 @@ def check_command(binary, min_major):
         return False
     result = subprocess.run([executable, "--version"], capture_output=True, text=True, timeout=8, check=False)
     version = (result.stdout or result.stderr).strip()
-    match = re.search(r"(\\d+)\\.", version)
+    match = re.search(r"([0-9]+)[.]", version)
     if binary == "node" and match and int(match.group(1)) < min_major:
         print(f"[ATUALIZAR] Node.js 22+ necessário (encontrado {version})")
         return False

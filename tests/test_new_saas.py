@@ -37,6 +37,11 @@ class ScaffoldTests(unittest.TestCase):
             self.assertTrue((destination / "CLAUDE.md").is_file())
             self.assertTrue((destination / ".foundation" / "standards" / "performance.json").is_file())
             self.assertTrue((destination / ".github" / "workflows" / "ci.yml").is_file())
+            schema = (destination / "supabase" / "schema.sql").read_text(encoding="utf-8").lower()
+            for entity in ("workspaces", "workspace_memberships", "tasks"):
+                self.assertIn(f"alter table public.{entity} enable row level security", schema)
+            self.assertIn("is_workspace_member", schema)
+            self.assertNotIn("service_role", (destination / ".env.example").read_text().split("=", 1)[-1])
             with self.assertRaises(FileExistsError):
                 module.create("Outro Produto", destination)
 
