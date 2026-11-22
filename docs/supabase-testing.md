@@ -11,12 +11,12 @@ A estratégia recomendada utiliza a CLI oficial em Docker. Ela cria uma instala�
 python3 foundation.py init --name "Teste Local" --database supabase --output ../teste-local --non-interactive
 cd ../teste-local
 npm install
-supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor,mailpit
 node scripts/integration-smoke.mjs
 supabase stop
 ```
 
-O script `integration-smoke.mjs` lê `supabase status -o env`, obtém a chave **anon local** sem imprimi-la e recusa URLs que não sejam localhost/127.0.0.1. Não usa a `service_role`. Testa registro e sessão de dois usuários, criação e leitura por proprietário, policies de RLS, tentativas de invasão por owner_id falso, inserção em outro workspace, UPDATE/DELETE cruzados e bloqueio a visitantes anônimos.
+O fluxo mínimo exclui o serviço local **Mailpit** de testes de e-mail, pois a suíte verifica login e RLS, não entrega de mensagens. Para testar magic links e recuperação de conta localmente, remova `mailpit` da lista de exclusões.\n\nO script `integration-smoke.mjs` lê `supabase status -o env`, obtém a chave **anon local** sem imprimi-la e recusa URLs que não sejam localhost/127.0.0.1. Não usa a `service_role`. Testa registro e sessão de dois usuários, criação e leitura por proprietário, policies de RLS, tentativas de invasão por owner_id falso, inserção em outro workspace, UPDATE/DELETE cruzados e bloqueio a visitantes anônimos.
 
 Também existe o workflow `.github/workflows/supabase-local.yml`, que executa esses passos em GitHub Actions.
 

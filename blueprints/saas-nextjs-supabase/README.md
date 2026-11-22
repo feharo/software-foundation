@@ -22,7 +22,7 @@ migração versionada e `scripts/integration-smoke.mjs`.
 Com Node.js, Docker e a CLI Supabase instalada:
 
 ```sh
-supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor
+supabase start --exclude studio,imgproxy,logflare,vector,edge-runtime,postgres-meta,realtime,storage-api,supavisor,mailpit
 node scripts/integration-smoke.mjs
 supabase stop
 ```
