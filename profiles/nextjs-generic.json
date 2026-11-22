@@ -1,0 +1,44 @@
+{
+  "name": "nextjs-generic",
+  "stack": [
+    "Next.js",
+    "React",
+    "Database not detected"
+  ],
+  "focus": [
+    "frontend",
+    "api",
+    "assets",
+    "testing",
+    "security"
+  ],
+  "recommend": [
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P005",
+    "P009",
+    "P011",
+    "P012",
+    "P015",
+    "P021",
+    "P022",
+    "P026",
+    "P029",
+    "P030",
+    "P031"
+  ],
+  "conditional": [
+    "P006",
+    "P007",
+    "P010",
+    "P013",
+    "P014",
+    "P018",
+    "P020",
+    "P023",
+    "P028"
+  ],
+  "notes": "Não presume infraestrutura de dados; revisar autenticação, banco e estratégia de renderização conforme o projeto."
+}

@@ -22,3 +22,10 @@
 ## Princípio
 
 Não dar a impressão de que uma landing + CRUD são um SaaS comercial pronto. Executar a jornada real e medir antes de escalar.
+
+## V3 — dois caminhos, um sistema
+
+- CLI única `python3 foundation.py` com `init` (projeto novo), `adopt` (projeto existente), `audit` e `doctor`.
+- `adopt` funciona em modo prévia por padrão, instala padrões apenas com `--apply`, preserva `AGENTS.md` e `CLAUDE.md` existentes, impede sobrescrita da pasta gerenciada e é idempotente.
+- `audit` lê o projeto sem alterar seu código e emite 31 status com evidências esperadas, além de checagens estáticas de CI, testes, build e dependências. **Não** declara regras atendidas por presença de arquivos.
+- Próximas fases: verificações dinâmicas proporcionais ao projeto, `foundation fix` com revisão de PR e `foundation upgrade` com migrações seguras.

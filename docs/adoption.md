@@ -1,5 +1,15 @@
 # Adoção em projetos
 
+## Caminho rápido para código já existente
+
+```sh
+python3 foundation.py adopt /caminho/projeto
+python3 foundation.py adopt /caminho/projeto --apply
+python3 foundation.py audit /caminho/projeto --format markdown
+```
+
+A primeira execução só cria uma prévia; `--apply` instala arquivos sem sobrescrever os existentes. Ao encontrar uma configuração `.foundation` conflitante, o comando interrompe a operação sem iniciar alterações.
+
 ## Caminho minimo
 
 - Definir perfil: `profiles/nextjs-supabase.json`, `profiles/nextjs-postgres.json`, `profiles/nextjs-nestjs.json`, `profiles/react-spa.json` ou `profiles/api-service.json`. Para projetos novos use `scripts/new_saas.py --database supabase|postgres`.
