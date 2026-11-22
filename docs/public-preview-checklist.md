@@ -12,6 +12,22 @@
 - [ ] Habilitar proteções de branch, Dependabot e ferramentas de segurança compatíveis com o plano GitHub.
 - [ ] Revisar a licença e termos de **cada dependência externa** e das Skills referenciadas.
 
+## Configuração manual do GitHub antes de abrir ao público
+
+As etapas abaixo exigem acesso à interface administrativa e **não foram confirmadas pela integração**:
+
+- [ ] Definir **About / Description** em inglês e temas: `saas-starter`, `nextjs`, `react`, `postgresql`, `supabase`, `developer-tools`, `ai-coding`, `software-engineering`, `performance`, `open-source`.
+- [ ] Definir website para a página **somente depois de publicada e acessível**, ou apontar provisoriamente para a página comercial da Feharo Tech.
+- [ ] Adicionar imagem de prévia social em **Settings > Social preview**, se disponível.
+- [ ] Criar/confirmar **ruleset de proteção da `main`**: exigir PR e checks de qualidade, bloquear force-push e deleção, considerar exigência de revisão antes do merge. A listagem de rulesets anterior estava vazia; a leitura da proteção clássica retornou 403.
+- [ ] Confirmar **Security > Private vulnerability reporting**, `Dependabot alerts`, secret scanning/push protection disponíveis e canal de contato seguro; o `SECURITY.md` depende desse canal.
+- [ ] Revisar manualmente **todas as descrições/comentários de PR, histórico de issues, logs e artefatos do Actions**, inclusive de workflows anteriores; a varredura de Git não consegue verificar esses lugares.
+- [ ] Verificar a propriedade dos links de perfil profissional/LinkedIn e o formulário de contato da Feharo Tech, especialmente em sessão anônima.
+- [ ] Considerar a licença de bibliotecas e conteúdo de terceiros. A licença MIT do projeto não altera os termos dessas dependências.
+- [ ] Revisar **Settings > Actions > General** para restringir ações e o escopo de tokens de acordo com a política de contribuições externas.
+
+**Importante:** ao mudar de privado para público, o GitHub torna **histórico do Actions e logs visíveis para todos**, não só o código e commits. A documentação oficial detalha esse impacto: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility
+
 ## Depois de liberar publicamente
 
 - [ ] Criar um release marcado como beta/prévia, nunca prometer produção certificada.
