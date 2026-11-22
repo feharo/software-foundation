@@ -4,6 +4,10 @@ on:
     branches: [main]
     paths:
       - 'blueprints/**'
+      - 'standards/performance.json'
+      - 'profiles/nextjs-supabase.json'
+      - 'templates/**'
+      - 'docs/frontend-playbook.md'
       - 'scripts/new_saas.py'
       - 'tests/test_new_saas.py'
       - '.github/workflows/saas-starter.yml'

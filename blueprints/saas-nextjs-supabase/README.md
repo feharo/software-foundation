@@ -48,3 +48,15 @@ npm start
 ## Próximos passos
 
 Consulte `https://github.com/feharo/software-foundation/blob/main/docs/saas-roadmap.md`. Adicione fluxos de negócio, permissões e pagamentos apenas quando seus critérios de aceite forem testáveis.
+
+## Padrões incorporados
+
+O projeto foi gerado com `AGENTS.md`, `CLAUDE.md` e uma cópia local do catálogo em `.foundation/standards/performance.json`. Isso permite que os agentes continuem seguindo o mesmo padrão após você separar o SaaS deste repositório. O arquivo `.foundation/profile.json` descreve o stack do starter.
+
+## Diagnóstico para iniciantes
+
+```sh
+python3 scripts/doctor.py
+```
+
+O diagnóstico informa se Node.js, npm, variáveis do Supabase e migração SQL estão presentes, **sem imprimir valores de chaves**. Após o primeiro `npm install`, inclua o arquivo `package-lock.json` no controle de versão para builds mais reprodutíveis.

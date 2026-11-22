@@ -18,6 +18,8 @@ class ScaffoldTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             module.valid_color("red; background: url(foo)")
         with self.assertRaises(ValueError):
+            module.valid_color("#ff5533")
+        with self.assertRaises(ValueError):
             module.valid_name("bad\nname")
 
     def test_create_project_and_no_overwrite(self):
@@ -31,6 +33,10 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIn("#1b4bb1", (destination / "app" / "globals.css").read_text())
             self.assertTrue((destination / "supabase" / "schema.sql").is_file())
             self.assertTrue((destination / ".env.example").is_file())
+            self.assertTrue((destination / "AGENTS.md").is_file())
+            self.assertTrue((destination / "CLAUDE.md").is_file())
+            self.assertTrue((destination / ".foundation" / "standards" / "performance.json").is_file())
+            self.assertTrue((destination / ".github" / "workflows" / "ci.yml").is_file())
             with self.assertRaises(FileExistsError):
                 module.create("Outro Produto", destination)
 

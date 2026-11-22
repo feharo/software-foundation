@@ -12,6 +12,13 @@ NAME_LIMIT = 70
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
 REPLACE = {"__APP_NAME__", "__APP_SLUG__", "__PRIMARY_COLOR__"}
+EXTRA_FILES = {
+    "standards/performance.json": ".foundation/standards/performance.json",
+    "docs/frontend-playbook.md": ".foundation/docs/frontend-playbook.md",
+    "profiles/nextjs-supabase.json": ".foundation/profile.json",
+    "templates/AGENTS.md": "AGENTS.md",
+    "templates/CLAUDE.md": "CLAUDE.md",
+}
 
 
 def valid_name(value):
@@ -40,6 +47,11 @@ def valid_slug(slug):
 def valid_color(color):
     if not COLOR_PATTERN.fullmatch(color):
         raise ValueError("Cor inválida: use hexadecimal de 6 dígitos como #2558CF.")
+    channels = [int(color[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+    linear = [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
+    luminance = 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+    if 1.05 / (luminance + 0.05) < 4.5:
+        raise ValueError("Escolha uma cor principal mais escura (contraste mínimo 4.5:1 com texto branco).")
     return color.lower()
 
 
@@ -65,6 +77,11 @@ def create(name, output, slug=None, color="#2558cf"):
             if any(placeholder in data for placeholder in REPLACE):
                 raise RuntimeError(f"Placeholder não resolvido em {source.name}")
             target.write_text(data, encoding="utf-8")
+        for source_path, target_path in EXTRA_FILES.items():
+            source = ROOT / source_path
+            target = destination / target_path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
     except Exception:
         shutil.rmtree(destination)
         raise

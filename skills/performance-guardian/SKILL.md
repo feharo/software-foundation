@@ -23,3 +23,7 @@ description: Auditar e implementar praticas de performance em projetos de softwa
 ## Contrato
 
 Usar status `pass|fail|not_applicable|not_verified` conforme `schemas/audit-report.example.json`. Justificar toda excecao. Ver `references/evidence.md`.
+
+## React e Next.js
+
+No caso de React/Next.js, revisar primeiro waterfalls e tamanho de bundle, depois renderização no servidor, dados do cliente, renders, custo de renderização, JavaScript e padrões avançados. Consultar `docs/frontend-playbook.md` e considerar a skill oficial Vercel React Best Practices: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices. Não redistribuir seu conteúdo sem verificar licença e versão. Não tratar micro-otimizações como prioridade antes de medir rede, LCP, INP e CLS.

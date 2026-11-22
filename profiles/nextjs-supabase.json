@@ -1,0 +1,52 @@
+{
+  "name": "nextjs-supabase",
+  "stack": [
+    "Next.js 16",
+    "React 19",
+    "Supabase Auth",
+    "PostgreSQL RLS"
+  ],
+  "focus": [
+    "frontend",
+    "api",
+    "database",
+    "assets",
+    "testing",
+    "security"
+  ],
+  "recommend": [
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P005",
+    "P009",
+    "P011",
+    "P012",
+    "P015",
+    "P016",
+    "P017",
+    "P019",
+    "P021",
+    "P022",
+    "P024",
+    "P025",
+    "P026",
+    "P027",
+    "P029",
+    "P030",
+    "P031"
+  ],
+  "conditional": [
+    "P006",
+    "P007",
+    "P010",
+    "P013",
+    "P014",
+    "P018",
+    "P020",
+    "P023",
+    "P028"
+  ],
+  "notes": "A landing usa renderizacao no servidor; dashboard usa client-side por simplicidade. Autorizacao via Supabase RLS, nunca via filtro client. Redis, queue e multi instancia apenas com necessidade real."
+}
