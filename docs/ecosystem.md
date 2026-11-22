@@ -183,7 +183,7 @@ It does **not** upgrade framework dependencies, rewrite source files, migrate da
 | Performance rules | [`standards/performance.json`](../standards/performance.json) | 31 IDs from P001 through P031; guidance, applicability and evidence |
 | Profiles | [`profiles/`](../profiles/) | 7 stack-specific mappings of recommended/conditional rules |
 | Agent instruction templates | [`templates/`](../templates/) | AGENTS.md and CLAUDE.md for compatible coding agents |
-| Reusable agent Skills | [`skills/`](../skills/) | SaaS Builder and Performance Guardian, manually exposed to a compatible agent |
+| Reusable agent Skills | [`saas-builder`](../skills/saas-builder/SKILL.md), [`performance-guardian`](../skills/performance-guardian/SKILL.md) | Two Skills, manually exposed to a compatible agent |
 | Catalog upgrade | [`scripts/upgrade.py`](../scripts/upgrade.py) | Check SHA-256, protect local edits and back up managed data |
 | Audit data contract | [`schemas/audit-report.example.json`](../schemas/audit-report.example.json) | Expected structure of evidence-oriented rule findings |
 | Developer documentation | [`docs/`](./) | Installation, security, frontend playbook, limitations and roadmap |

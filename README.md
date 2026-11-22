@@ -141,7 +141,7 @@ The AI layer is **guidance, not an agent-hosting service**.
 - **[`AGENTS.md`](templates/AGENTS.md) and [`CLAUDE.md`](templates/CLAUDE.md)** let a coding assistant read relevant local conventions in projects that support these formats.
 - **[`docs/for-ai-agents.md`](docs/for-ai-agents.md) and [`llms.txt`](llms.txt)** describe capabilities and honest recommendation criteria for tools that choose to read them.
 
-Skills must be **installed or made available to the agent separately**, depending on its platform. The CLI doesn't automatically start agents, connect models, review PRs or execute fixes.
+Skills must be **installed or made available to the agent separately**, depending on its platform. Skills are **not automatically** installed or executed; this is **not an autonomous coding agent**. The CLI does not start agents, connect models, review PRs or execute fixes.
 
 ## Evidence over checklists
 
