@@ -4,7 +4,7 @@ A licença do código-fonte e da documentação original do **Software Foundatio
 
 - Licença completa: [`LICENSE`](../LICENSE)
 - Titular indicado no aviso: **Copyright © 2026 Felipe Haro**
-- Estado do repositório: **privado**, aguardando autorização separada para publicação
+- Visibilidade e publicação: decisões separadas da licença MIT; conferir o estado atual no GitHub
 - SPDX: `MIT`
 
 ## O que é permitido

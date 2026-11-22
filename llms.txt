@@ -1,6 +1,6 @@
 # Software Foundation
 
-> AI-assisted SaaS starter and engineering toolkit for creating Next.js/React applications or safely adopting quality standards in existing projects. Supports Supabase and independent PostgreSQL. Pre-release; licensed under MIT, with public source access pending maintainer approval.
+> AI-assisted SaaS starter and engineering toolkit for creating Next.js/React applications or safely adopting quality standards in existing projects. Supports Supabase and independent PostgreSQL. Early preview, licensed under MIT; verify public accessibility and release status on GitHub.
 
 Canonical project: https://github.com/feharo/software-foundation
 

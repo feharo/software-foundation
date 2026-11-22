@@ -147,6 +147,17 @@ class DiscoverySEOTests(unittest.TestCase):
         self.assertIn("manual", guide)
         self.assertIn("no guaranteed indexing", guide)
 
+    def test_public_copy_stays_true_after_visibility_change(self):
+        for page in (SITE / "index.html", SITE / "pt-br" / "index.html"):
+            body = page.read_text(encoding="utf-8").lower()
+            self.assertNotIn("public launch pending approval", body)
+            self.assertNotIn("publicação pública pendente", body)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8").lower()
+        self.assertNotIn("currently private", readme)
+        self.assertNotIn("still private", readme)
+        self.assertIn("mit", readme)
+
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -35,5 +35,15 @@ class GitleaksHistoryResultTests(unittest.TestCase):
         self.assertIn("código 127", detail)
 
 
+    def test_workflow_includes_pull_request_history(self):
+        from pathlib import Path
+        workflow = (Path(__file__).resolve().parents[1] / ".github/workflows/history-secrets.yml").read_text(encoding="utf-8")
+        self.assertIn("refs/pull/*/head", workflow)
+        self.assertIn("refs/remotes/origin/audit-pr/*", workflow)
+        self.assertIn("PR ref audit incomplete", workflow)
+        self.assertIn("--log-opts=", workflow)
+        self.assertIn("fetch-depth: 0", workflow)
+
+
 if __name__ == "__main__":
     unittest.main()

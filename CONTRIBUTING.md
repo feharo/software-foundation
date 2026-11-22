@@ -43,4 +43,4 @@ Abra um PR com objetivo, mudanças, riscos, testes executados e limitações. Me
 
 ## Licença
 
-O Software Foundation está licenciado sob **[MIT](LICENSE)**. Ao enviar uma contribuição para este repositório, você concorda em disponibilizá-la sob essa licença e declara ter direitos para contribuir. Preserve avisos de copyright e licenças de dependências de terceiros; não envie código de clientes, credenciais ou informações confidenciais. O repositório continua privado até o lançamento autorizado.
+O Software Foundation está licenciado sob **[MIT](LICENSE)**. Ao enviar uma contribuição para este repositório, você concorda em disponibilizá-la sob essa licença e declara ter direitos para contribuir. Preserve avisos de copyright e licenças de dependências de terceiros; não envie código de clientes, credenciais ou informações confidenciais. Contribuições externas são aceitas quando o repositório estiver acessível aos colaboradores; confira a visibilidade no GitHub.

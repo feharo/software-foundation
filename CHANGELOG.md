@@ -17,4 +17,4 @@ Este arquivo descreve marcos da fundação. Não corresponde a versões publicad
 - Catálogo de 31 regras de performance e duas Skills de engenharia.
 - Testes de geração, build e isolamento no PostgreSQL independente.
 
-**Aviso:** ainda não há licença de distribuição e nenhuma versão pública publicada.
+**Aviso:** licença [MIT](LICENSE) aprovada. A publicação de uma release beta no GitHub é uma etapa separada deste changelog.
