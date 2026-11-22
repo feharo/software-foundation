@@ -2,6 +2,26 @@
 
 Fundação de engenharia para criar SaaS profissionais com IA, sem depender de repetir prompts. Une **gerador de projeto**, **Skill para agentes**, **31 padrões verificáveis** e **CI**.
 
+## Dois caminhos, um sistema
+
+**Criar um projeto novo:**
+
+```sh
+python3 foundation.py init --name "Meu SaaS" --database postgres --output ../meu-saas --non-interactive
+```
+
+**Evoluir um projeto existente, sem alterar código:**
+
+```sh
+python3 foundation.py adopt ../meu-projeto
+python3 foundation.py adopt ../meu-projeto --apply
+python3 foundation.py audit ../meu-projeto --format markdown --output ../auditoria-projeto.md
+```
+
+A instalação das regras exige `--apply`. A auditoria é somente leitura, exceto quando você escolhe salvar o relatório. `adopt` não altera arquivos já existentes: preserva instruções personalizadas dos agentes e bloqueia conflitos na pasta gerenciada.
+
+Leia [a arquitetura dos dois caminhos](docs/two-paths.md).
+
 ## Primeiro SaaS
 
 ```sh

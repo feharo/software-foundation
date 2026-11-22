@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Create a new SaaS from the versioned Software Foundation blueprint."""
 import argparse
+import hashlib
+import json
 import re
 import shutil
 import sys
@@ -91,6 +93,14 @@ def create(name, output, slug=None, color="#2558cf", database="supabase"):
         profile_target = destination / ".foundation" / "profile.json"
         profile_target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(profile, profile_target)
+        manifest_target = destination / ".foundation" / "manifest.json"
+        manifest_content = {
+            "schema_version": 1,
+            "foundation_version": (ROOT / "VERSION").read_text(encoding="utf-8").strip(),
+            "profile": f"nextjs-{database}",
+            "catalog_sha256": hashlib.sha256((ROOT / "standards/performance.json").read_bytes()).hexdigest(),
+        }
+        manifest_target.write_text(json.dumps(manifest_content, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
         for source_path, target_path in EXTRA_FILES.items():
             source = ROOT / source_path
             target = destination / target_path

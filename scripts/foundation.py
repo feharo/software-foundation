@@ -94,7 +94,7 @@ def suggested_profile(detected):
     if "nextjs" in tech and "postgres" in tech:
         return "nextjs-postgres"
     if "nextjs" in tech:
-        return "nextjs-postgres" if (detected["path"] / "lib" / "db.ts").is_file() else "react-spa"
+        return "nextjs-generic"
     if "react" in tech or "vue" in tech or "angular" in tech or "svelte" in tech:
         return "react-spa"
     if tech.intersection({"nestjs", "node-api", "python", "go", "rust", "api"}):
@@ -317,8 +317,7 @@ def main(argv=None):
 
     parser = argparse.ArgumentParser(prog="foundation", description="Dois caminhos, um sistema: criar ou evoluir software.")
     cmd = parser.add_subparsers(dest="command", required=True)
-    init = cmd.add_parser("init", help="Gerar um SaaS novo (Supabase ou PostgreSQL).")
-    init.add_argument("--help-init", action="store_true", help="Para opções completas: foundation init --help")
+    cmd.add_parser("init", help="Gerar um SaaS novo (Supabase ou PostgreSQL).")
     ad = cmd.add_parser("adopt", help="Integrar padrões ao projeto existente sem sobrescrever código.")
     ad.add_argument("path", nargs="?", default=".")
     ad.add_argument("--profile", choices=sorted(PROFILE_NAMES))
@@ -334,8 +333,9 @@ def main(argv=None):
     try:
         if args.command == "adopt":
             plan = adopt(args.path, profile=args.profile, apply=args.apply)
-            print(json.dumps(plan, ensure_ascii=False, indent=2) if args.json else "")
-            if not args.json:
+            if args.json:
+                print(json.dumps(plan, ensure_ascii=False, indent=2))
+            else:
                 show_adoption(plan)
             return 0
         if args.command == "audit":
