@@ -4,7 +4,7 @@ Fonte de verdade: https://github.com/feharo/software-foundation (fixar SHA/tag a
 
 Para cada funcionalidade:
 1. Identificar jornada de usuário, stack, escala e riscos de privacidade/multi-tenant.
-2. Consultar `standards/performance.json` e `docs/frontend-playbook.md` para UI React/Next.js.
+2. Consultar `.foundation/standards/performance.json` e `.foundation/docs/frontend-playbook.md` no SaaS gerado; na fundação original, usar `standards/performance.json` e `docs/frontend-playbook.md`.
 3. Priorizar waterfalls e bundle size, depois server/client, re-render e refinamentos; revisar a Skill oficial Vercel React Best Practices se instalada.
 4. Implementar estados loading/skeleton, vazio, erro, sessão expirada, acessibilidade e mobile first.
 5. Isolar operações por tenant no backend/RLS; não confiar em filtros do cliente.

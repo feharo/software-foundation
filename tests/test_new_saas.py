@@ -36,6 +36,8 @@ class ScaffoldTests(unittest.TestCase):
             self.assertTrue((destination / "AGENTS.md").is_file())
             self.assertTrue((destination / "CLAUDE.md").is_file())
             self.assertTrue((destination / ".foundation" / "standards" / "performance.json").is_file())
+            instructions = (destination / "AGENTS.md").read_text(encoding="utf-8")
+            self.assertIn(".foundation/standards/performance.json", instructions)
             self.assertTrue((destination / ".github" / "workflows" / "ci.yml").is_file())
             schema = (destination / "supabase" / "schema.sql").read_text(encoding="utf-8").lower()
             for entity in ("workspaces", "workspace_memberships", "tasks"):
